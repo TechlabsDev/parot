@@ -50,38 +50,20 @@ class _PriceGraphState extends State<PriceGraph> {
         ),
         Positioned(
           bottom: 100,
-          left: widthBetweenPoint * (highestPriceIndex),
-          child: Column(
-            children: [
-              Text(
-                "최고 ${priceList[highestPriceIndex].toInt().toCommaFormat}원",
-              ),
-              const CircleAvatar(
-                radius: 2,
-                backgroundColor: Colors.black,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-            ],
+          left: (highestPriceIndex == 0 ? 20 : 0) +
+              widthBetweenPoint * (highestPriceIndex) -
+              (highestPriceIndex == priceList.length - 1 ? 20 : 0),
+          child: Text(
+            "최고 ${priceList[highestPriceIndex].toInt().toCommaFormat}원",
           ),
         ),
         Positioned(
           bottom: -20,
-          left: (widthBetweenPoint) * (lowestPriceIndex),
-          child: Column(
-            children: [
-              const CircleAvatar(
-                radius: 2,
-                backgroundColor: Colors.black,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                "최저 ${priceList[lowestPriceIndex].toInt().toCommaFormat}원",
-              ),
-            ],
+          left: (lowestPriceIndex == 0 ? 20 : 0) +
+              (widthBetweenPoint) * (lowestPriceIndex) -
+              (lowestPriceIndex == priceList.length - 1 ? 20 : 0),
+          child: Text(
+            "최저 ${priceList[lowestPriceIndex].toInt().toCommaFormat}원",
           ),
         )
       ],
