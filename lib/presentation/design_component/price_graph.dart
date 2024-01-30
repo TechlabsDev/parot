@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:chart_sparkline/chart_sparkline.dart';
 import 'package:flutter/material.dart';
+import 'package:parot/extension/int_extension.dart';
 
 class PriceGraph extends StatefulWidget {
   const PriceGraph({Key? key}) : super(key: key);
@@ -50,14 +51,14 @@ class _PriceGraphState extends State<PriceGraph> {
           bottom: 100,
           left: widthBetweenPoint * (highestPriceIndex),
           child: Text(
-            "최고 ${priceList[highestPriceIndex]}원",
+            "최고 ${priceList[highestPriceIndex].toInt().toCommaFormat}원",
           ),
         ),
         Positioned(
           top: (highestPrice - lowestPrice) / 500,
           left: widthBetweenPoint * (lowestPriceIndex),
           child: Text(
-            "최저 ${priceList[lowestPriceIndex]}원",
+            "최저 ${priceList[lowestPriceIndex].toInt().toCommaFormat}원",
           ),
         )
       ],
