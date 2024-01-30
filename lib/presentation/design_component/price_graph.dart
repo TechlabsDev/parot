@@ -12,7 +12,7 @@ class PriceGraph extends StatefulWidget {
 }
 
 class _PriceGraphState extends State<PriceGraph> {
-  List<double> priceList = const [48000, 44000, 60000, 40000, 22500, 48000];
+  List<double> priceList = const [48000, 14000, 60000, 40000, 22500, 8000];
   @override
   Widget build(BuildContext context) {
     double highestPrice = priceList.reduce(max);
@@ -33,6 +33,7 @@ class _PriceGraphState extends State<PriceGraph> {
           min: 0,
           lineWidth: 2.0,
           pointsMode: PointsMode.all,
+          maxLabel: true,
           pointSize: 5.0,
           averageLine: true,
           averageLabel: false,
@@ -50,15 +51,37 @@ class _PriceGraphState extends State<PriceGraph> {
         Positioned(
           bottom: 100,
           left: widthBetweenPoint * (highestPriceIndex),
-          child: Text(
-            "최고 ${priceList[highestPriceIndex].toInt().toCommaFormat}원",
+          child: Column(
+            children: [
+              Text(
+                "최고 ${priceList[highestPriceIndex].toInt().toCommaFormat}원",
+              ),
+              const CircleAvatar(
+                radius: 2,
+                backgroundColor: Colors.black,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+            ],
           ),
         ),
         Positioned(
-          top: (highestPrice - lowestPrice) / 500,
-          left: widthBetweenPoint * (lowestPriceIndex),
-          child: Text(
-            "최저 ${priceList[lowestPriceIndex].toInt().toCommaFormat}원",
+          bottom: -20,
+          left: (widthBetweenPoint) * (lowestPriceIndex),
+          child: Column(
+            children: [
+              const CircleAvatar(
+                radius: 2,
+                backgroundColor: Colors.black,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                "최저 ${priceList[lowestPriceIndex].toInt().toCommaFormat}원",
+              ),
+            ],
           ),
         )
       ],

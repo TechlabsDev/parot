@@ -9,6 +9,8 @@ extension IntExtension on int {
     }
   }
 
+  //세자리마다 콤마 표기
+  //ex. 10000 -> 10,000
   String get toCommaFormat {
     return NumberFormat('###,###,###,###').format(this);
   }
