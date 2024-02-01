@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>kakao</string>
+			<string>sociallogin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakao9890429e7f3c2a66b9d580c407210ddf</string>
