@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>패롯패롯</string>
+	<string>패럿패럿</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,7 +29,7 @@
 			<string>kakao</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao{YOUR_NATIVE_KEY}</string>
+				<string>kakao9890429e7f3c2a66b9d580c407210ddf</string>
 				<string>packagenaeme..</string>
 			</array>
 		</dict>
@@ -38,7 +38,7 @@
 	<string>{YOUR_NATIVE_KEY}</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>kakao${YOUR_NATIVE_KEY}</string>
+		<string>kakao9890429e7f3c2a66b9d580c407210ddf</string>
 		<string>kakaokompassauth</string>
 		<string>storykompassauth</string>
 		<string>kakaolink</string>

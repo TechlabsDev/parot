@@ -1,20 +1,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="패롯패롯"
+        android:label="패럿패럿"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <!-- 카카오 로그인 커스텀 URL 스킴 설정 -->
         <activity
             android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity"
             android:exported="true">
-            <intent-filter android:label="패롯패롯">
+            <intent-filter android:label="패럿패럿">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- "kakao${YOUR_NATIVE_APP_KEY}://oauth" 형식의 앱 실행 스킴 설정 -->
                 <!-- 카카오 로그인 Redirect URI -->
-                <data android:scheme="kakao6acbaaba6db9b4ad95e99d29772aa79f" android:host="oauth"/>
+                <data android:scheme="kakao9890429e7f3c2a66b9d580c407210ddf" android:host="oauth"/>
             </intent-filter>
         </activity>
         <activity
