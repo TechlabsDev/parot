@@ -46,6 +46,7 @@ dependencies:
   hive_flutter: ^1.1.0
   chart_sparkline: ^1.0.15+1
   kakao_flutter_sdk: ^1.8.0
+  flutter_naver_login: ^1.8.0
 
 dev_dependencies:
   flutter_test:

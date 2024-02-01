@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:parot/domain/usecase/sign_in/sign_in_with_kakao.dart';
 import 'package:parot/presentation/design_component/price_graph.dart';
 
+import 'domain/usecase/sign_in/sign_in_with_naver.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -37,10 +39,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PriceGraph(),
+            const PriceGraph(),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async => await SignInWithKakao().call(),
               child: Text("카카오 로그인"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async => await SignInWithNaver().call(),
+              child: Text("네이버 로그인"),
             ),
           ],
         ),

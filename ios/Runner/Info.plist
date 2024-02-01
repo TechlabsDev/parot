@@ -30,12 +30,33 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>kakao9890429e7f3c2a66b9d580c407210ddf</string>
-				<string>packagenaeme..</string>
+				<string>com.tlabs.parot</string>
+				<string>parotnaverlogin</string>
 			</array>
 		</dict>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+       <string>naversearchapp</string>
+       <string>naversearchthirdlogin</string>
+    </array>
+
+    <key>naverServiceAppUrlScheme</key>
+    <string>parotnaverlogin</string>
+
+    <!-- naver client_id -->
+    <key>naverConsumerKey</key>
+    <string>qODQaLv_4rewcDBdiLlc</string>
+
+    <!-- naver client_secret -->
+    <key>naverConsumerSecret</key>
+    <string>dffFzJ0IcT</string>
+
+    <key>naverServiceAppName</key>
+    <string>패럿패럿</string>
+
 	<key>KAKAO_APP_KEY</key>
-	<string>{YOUR_NATIVE_KEY}</string>
+	<string>kakao9890429e7f3c2a66b9d580c407210ddf</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakao9890429e7f3c2a66b9d580c407210ddf</string>
@@ -69,5 +90,27 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+       <key>NSAllowsArbitraryLoads</key>
+       <true/>
+       <key>NSExceptionDomains</key>
+       <dict>
+          <key>naver.com</key>
+          <dict>
+             <key>NSExceptionRequiresForwardSecrecy</key>
+             <false/>
+             <key>NSIncludesSubdomains</key>
+             <true/>
+          </dict>
+          <key>naver.net</key>
+          <dict>
+             <key>NSExceptionRequiresForwardSecrecy</key>
+             <false/>
+             <key>NSIncludesSubdomains</key>
+             <true/>
+          </dict>
+        </dict>
+    </dict>
 </dict>
 </plist>
