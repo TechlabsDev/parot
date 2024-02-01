@@ -1,4 +1,4 @@
-package com.example.parot
+package com.tlabs.parot
 
 import io.flutter.embedding.android.FlutterActivity
 
