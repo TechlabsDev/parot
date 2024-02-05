@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "849555871829",
+    "project_id": "parot-fe322",
+    "storage_bucket": "parot-fe322.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849555871829:android:280dd848be8b8dab289cdc",
+        "android_client_info": {
+          "package_name": "com.tlabs.parot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaFVQdx3S1xL8BxMANeHAzEBb074-ZhgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

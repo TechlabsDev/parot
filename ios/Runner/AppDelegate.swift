@@ -18,6 +18,10 @@ import NaverThirdPartyLogin
       }
       // if you use other application url process, please add code here.
 
+      if (url.absoluteString.contains("naversearchthirdlogin")) {
+         return NaverThirdPartyLoginConnection.getSharedInstance().application(app, open: url, options: options)
+      }
+
       if (!applicationResult) {
          applicationResult = super.application(app, open: url, options: options)
       }

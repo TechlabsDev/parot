@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: '패럿패럿',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -49,11 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                if (GetPlatform.isWeb) {
-                  Get.toNamed(ParotPath.SIGN_IN_KAKAO_WEB);
-                } else {
-                  await SignInWithKakao().call();
-                }
+                await SignInWithKakao().call();
               },
               child: Text("카카오 로그인"),
             ),
