@@ -2,9 +2,10 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakaoSdk;
 import 'package:parot/const/keys/kakao_key.dart';
 
 class KakaoApi {
-  Future<bool> signInWithKakao() async {
+  Future<bool> signIn() async {
     kakaoSdk.KakaoSdk.init(
       nativeAppKey: kakaoNativeKey,
+      javaScriptAppKey: kakaoRestApiKey,
     );
     try {
       bool kakaotalkInstalled = await kakaoSdk.isKakaoTalkInstalled();
