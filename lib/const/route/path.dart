@@ -1,3 +1,4 @@
+/// '/'는 앞에 붙인다. String 끝에 붙이지 말 것
 class ParotPath {
   static const String MAIN = "/";
   static const String SIGN_IN = "${MAIN}sign-in";
