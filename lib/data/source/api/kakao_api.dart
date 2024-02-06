@@ -2,6 +2,8 @@ import 'package:get/utils.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakaoSdk;
 import 'package:parot/const/key/kakao_key.dart';
 
+import '../../../const/route/parot_url.dart';
+
 class KakaoApi {
   Future<bool> signIn() async {
     kakaoSdk.KakaoSdk.init(
@@ -12,9 +14,9 @@ class KakaoApi {
     if (GetPlatform.isWeb) {
       try {
         if (kakaotalkInstalled) {
-          await kakaoSdk.AuthCodeClient.instance.authorizeWithTalk(redirectUri: "https://parot-fe322.web.app");
+          await kakaoSdk.AuthCodeClient.instance.authorizeWithTalk(redirectUri: PAROT_URL);
         } else {
-          await kakaoSdk.AuthCodeClient.instance.authorize(redirectUri: "https://parot-fe322.web.app");
+          await kakaoSdk.AuthCodeClient.instance.authorize(redirectUri: PAROT_URL);
         }
         return true;
       } catch (_) {

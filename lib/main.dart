@@ -48,10 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
             const PriceGraph(),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {
-                await SignInWithKakao().call();
-              },
-              child: Text("카카오 로그인"),
+              onPressed: () async => await SignInWithKakao().call(),
+              child: const Text("카카오 로그인"),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -62,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   await SignInWithNaver().call();
                 }
               },
-              child: Text("네이버 로그인"),
+              child: const Text("네이버 로그인"),
             ),
           ],
         ),

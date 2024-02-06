@@ -12,7 +12,26 @@ class PriceGraph extends StatefulWidget {
 }
 
 class _PriceGraphState extends State<PriceGraph> {
-  List<double> priceList = const [5600, 14000, 60000, 40000, 22500, 8000];
+  List<double> priceList = const [
+    5600,
+    14000,
+    50000,
+    40000,
+    22500,
+    8000,
+    56000,
+    17000,
+    62000,
+    43500,
+    25500,
+    8700,
+    52600,
+    13000,
+    44000,
+    43250,
+    25500,
+    32250,
+  ];
   @override
   Widget build(BuildContext context) {
     double highestPrice = priceList.reduce(max);
@@ -33,9 +52,10 @@ class _PriceGraphState extends State<PriceGraph> {
           min: 0,
           lineWidth: 2.0,
           pointsMode: PointsMode.all,
-          maxLabel: true,
+          maxLabel: false,
           pointSize: 5.0,
           averageLine: true,
+          maxLine: true,
           averageLabel: false,
           pointColor: Colors.indigo,
           fillMode: FillMode.below,
