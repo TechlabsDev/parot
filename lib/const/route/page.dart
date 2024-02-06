@@ -17,6 +17,7 @@ class ParotPage {
     GetPage(
       name: ParotPath.SIGN_IN_NAVER_WEB,
       page: () => const SignInWithNaverWeb(),
+      transition: Transition.fadeIn,
     ),
   ];
 }

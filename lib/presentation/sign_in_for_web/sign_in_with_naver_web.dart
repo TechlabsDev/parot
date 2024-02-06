@@ -17,20 +17,27 @@ class _SignInWithNaverWebState extends State<SignInWithNaverWeb> {
       "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=$naverClientID&client_secret=$naverClientSecret&redirect_uri=$PAROT_URL&code=12345&state=1234";
   @override
   Widget build(BuildContext context) {
-    return InAppWebView(
-      initialUrlRequest: URLRequest(
-        url: WebUri.uri(
-          Uri.parse(url),
+    return Stack(
+      children: [
+        InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri.uri(
+              Uri.parse(url),
+            ),
+            headers: {
+              'Content-Type': 'text/html;charset=utf-8',
+            },
+          ),
+          onLoadStop: (controller, url) {},
+          onReceivedError: (controller, error, url) {
+            print(error);
+          },
+          onReceivedHttpError: (controller, request, response) {
+            print(response);
+          },
         ),
-        headers: {'Content-Type': 'text/html;charset=utf-8'},
-      ),
-      onLoadStop: (controller, url) {},
-      onReceivedError: (controller, error, url) {
-        print(error);
-      },
-      onReceivedHttpError: (controller, request, response) {
-        print(response);
-      },
+        Center(child: Material(child: SelectableText(url, style: const TextStyle(fontSize: 15)))),
+      ],
     );
   }
 }
