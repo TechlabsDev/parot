@@ -13,7 +13,9 @@ class SignInRepository {
     bool result = await _kakao.signIn();
     if (result) {
       // 로그인 성공 후 처리
+      print("카카오 로그인 성공");
       await _prefManager.setSignInType(SignInType.kakao);
+      print("카카오 로그인 pref 저장");
     }
     return result;
   }

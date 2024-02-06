@@ -36,7 +36,6 @@ class _SignInWithNaverWebState extends State<SignInWithNaverWeb> {
             print(response);
           },
         ),
-        Center(child: Material(child: SelectableText(url, style: const TextStyle(fontSize: 15)))),
       ],
     );
   }
