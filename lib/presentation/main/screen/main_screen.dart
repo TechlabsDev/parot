@@ -25,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   const PriceGraph(),
                   const SizedBox(height: 20),
-                  controller.loginType.value == LoginType.none
+                  controller.loginType.value == SignInType.none
                       ? Column(
                           children: [
                             ElevatedButton(
@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
                         )
                       : Column(
                           children: [
-                            Text("${controller.loginType.value.korName}로 로그인됨"),
+                            Text("${controller.loginType.value.korName}로 로그인 됨"),
                             ElevatedButton(
                               onPressed: controller.signOut,
                               child: const Text("로그아웃"),
