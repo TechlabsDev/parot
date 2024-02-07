@@ -4,6 +4,7 @@ import 'package:parot/presentation/main/controller/main_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../const/enum/login_type.dart';
+import '../../design_component/parot_scaffold.dart';
 import '../../design_component/price_graph.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     return GetX<MainController>(
         init: MainController(),
         builder: (controller) {
-          return Scaffold(
+          return ParrotScaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
