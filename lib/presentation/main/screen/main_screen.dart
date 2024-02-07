@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../const/enum/login_type.dart';
 import '../../design_component/price_graph.dart';
@@ -45,6 +46,19 @@ class _MainScreenState extends State<MainScreen> {
                             ElevatedButton(
                               onPressed: controller.signOut,
                               child: const Text("로그아웃"),
+                            ),
+                            const SizedBox(height: 20),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: TextField(
+                                decoration: const InputDecoration(
+                                  hintText: "상품id를 입력하면 쿠팡으로 이동",
+                                ),
+                                autofocus: true,
+                                onSubmitted: (value) {
+                                  launchUrl(Uri.parse("coupang://product?pId=$value&sdpReview"));
+                                },
+                              ),
                             ),
                           ],
                         ),
