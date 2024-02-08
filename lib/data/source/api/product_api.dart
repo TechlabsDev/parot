@@ -14,8 +14,10 @@ class ProductApi {
 
   Future openCoupang({required String productId}) async {
     try {
+      //쿠팡 앱을 열 수 있다면 쿠팡 앱으로 이동
       await launchUrl(Uri.parse("coupang://product?pId=$productId"));
     } catch (_) {
+      //쿠팡 앱을 열 수 없다면 쿠팡 웹으로 이동
       await launchUrl(Uri.parse("https://www.coupang.com/vp/products/$productId"));
     }
   }
