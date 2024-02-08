@@ -10,8 +10,11 @@ class NaverApi {
         //사용자가 다른 네이버 계정을 사용하고 싶을 수도 있으니, 자동 로그인 해제
         await FlutterNaverLogin.logOutAndDeleteToken();
       }
-      NaverLoginResult res = await FlutterNaverLogin.logIn();
-      return true;
+      var res = await FlutterNaverLogin.logIn();
+      if (res.status == NaverLoginStatus.loggedIn) {
+        return true;
+      }
+      return false;
     } catch (e) {
       return false;
     }
