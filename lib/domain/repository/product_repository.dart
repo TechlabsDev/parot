@@ -9,4 +9,8 @@ class ProductRepository {
   Future<Response> insertProductDataToDB({required ProductDetailRequest request}) async {
     return await _productApi.insertProductDataToDB(request: request);
   }
+
+  Future openCoupang({required String productId}) async {
+    await _productApi.openCoupang(productId: productId);
+  }
 }

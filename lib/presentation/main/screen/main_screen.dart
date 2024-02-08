@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/data/source/request/product_detail_request.dart';
 import 'package:parot/domain/usecase/product/get_product_detail.dart';
+import 'package:parot/domain/usecase/product/open_coupang.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
 import '../../../const/enum/login_type.dart';
@@ -35,12 +36,12 @@ class _MainScreenState extends State<MainScreen> {
                       ? Column(
                           children: [
                             ElevatedButton(
-                              onPressed: controller.handleKakaoSignIn,
+                              onPressed: controller.signIn.handleKakaoSignIn,
                               child: const Text("카카오 로그인"),
                             ),
                             const SizedBox(height: 20),
                             ElevatedButton(
-                              onPressed: controller.handleNaverSignIn,
+                              onPressed: controller.signIn.handleNaverSignIn,
                               child: const Text("네이버 로그인"),
                             ),
                           ],
@@ -49,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
                           children: [
                             Text("${controller.loginType.value.korName}로 로그인 됨"),
                             ElevatedButton(
-                              onPressed: controller.signOut,
+                              onPressed: controller.signIn.signOut,
                               child: const Text("로그아웃"),
                             ),
                             const SizedBox(height: 20),
@@ -64,6 +65,7 @@ class _MainScreenState extends State<MainScreen> {
                                   var response = await InsertProductDataToDB()
                                       .call(request: ProductDetailRequest(productId: "6329328037", itemId: "874629318"));
                                   log(jsonEncode(response.body));
+                                  await OpenCoupang().call(productId: value);
                                 },
                               ),
                             ),

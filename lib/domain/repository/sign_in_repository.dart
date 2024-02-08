@@ -40,4 +40,16 @@ class SignInRepository {
   Future<bool> signOut() async {
     return await _prefManager.setSignInType(SignInType.none);
   }
+
+  Future<bool> setAuthToken(String token) async {
+    return await _prefManager.setAuthToken(token);
+  }
+
+  Future<String> getAuthToken() async {
+    return await _prefManager.getAuthToken();
+  }
+
+  Future<Stream?> getAuthTokenStream() async {
+    return await _prefManager.authTokenChangeStream();
+  }
 }

@@ -48,4 +48,34 @@ class SharedPrefManager {
       return null;
     }
   }
+
+  Future<bool> setAuthToken(String token) async {
+    await init();
+    try {
+      await pref!.setString(PrefKey.authToken, token);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<String> getAuthToken() async {
+    await init();
+    try {
+      String str = pref!.getString(PrefKey.authToken, defaultValue: "").getValue();
+      return str;
+    } catch (_) {
+      return "";
+    }
+  }
+
+  Future<Stream?> authTokenChangeStream() async {
+    await init();
+    try {
+      Preference<String> stream = pref!.getString(PrefKey.authToken, defaultValue: "");
+      return stream;
+    } catch (_) {
+      return null;
+    }
+  }
 }

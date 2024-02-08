@@ -1,16 +1,14 @@
 import 'package:get/get.dart';
 import 'package:parot/domain/usecase/sign_in/get_sign_in_stream.dart';
 import 'package:parot/domain/usecase/sign_in/get_sign_in_type.dart';
-import 'package:parot/domain/usecase/sign_in/sign_out.dart';
+import 'package:parot/presentation/main/controller/main_sign_in.dart';
 
 import '../../../const/enum/login_type.dart';
-import '../../../const/route/path.dart';
-import '../../../domain/usecase/sign_in/sign_in_with_kakao.dart';
-import '../../../domain/usecase/sign_in/sign_in_with_naver.dart';
 
 class MainController extends GetxController {
   Rx<SignInType> loginType = SignInType.none.obs;
   Stream? signInStream;
+  MainSignIn signIn = MainSignIn();
   @override
   void onInit() async {
     loginType.value = await GetSignInType().call();
@@ -22,21 +20,5 @@ class MainController extends GetxController {
       });
     }
     super.onInit();
-  }
-
-  Future handleKakaoSignIn() async {
-    await SignInWithKakao().call();
-  }
-
-  Future handleNaverSignIn() async {
-    if (GetPlatform.isWeb) {
-      Get.toNamed(ParotPath.SIGN_IN_NAVER_WEB);
-    } else {
-      await SignInWithNaver().call();
-    }
-  }
-
-  Future signOut() async {
-    await SignOut().call();
   }
 }
