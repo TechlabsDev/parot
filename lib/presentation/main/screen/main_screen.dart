@@ -20,14 +20,20 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return GetX<MainController>(
-        init: MainController(),
+        init: Get.put(MainController()),
         builder: (controller) {
           return ParrotScaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const PriceGraph(),
+                  GetBuilder<MainController>(
+                      init: Get.put(MainController()),
+                      builder: (controller) {
+                        return PriceGraph(
+                          priceList: controller.priceList,
+                        );
+                      }),
                   const SizedBox(height: 20),
                   controller.loginType.value == SignInType.none
                       ? Column(
