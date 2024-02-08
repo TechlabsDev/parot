@@ -13,6 +13,10 @@ class ProductApi {
   }
 
   Future openCoupang({required String productId}) async {
-    await launchUrl(Uri.parse("coupang://product?pId=$productId"));
+    if (GetPlatform.isWeb) {
+      await launchUrl(Uri.parse("https://www.coupang.com/vp/products/$productId"));
+    } else {
+      await launchUrl(Uri.parse("coupang://product?pId=$productId"));
+    }
   }
 }
