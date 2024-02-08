@@ -3,6 +3,7 @@ class ProductDetailRequest {
   final String itemId;
 
   ProductDetailRequest({required this.productId, required this.itemId});
+
   ProductDetailRequest.fromJson(Map<String, dynamic> json)
       : productId = json['productId'],
         itemId = json['itemId'];
