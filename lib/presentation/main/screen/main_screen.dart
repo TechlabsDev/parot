@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:parot/data/source/request/product_detail_request.dart';
+import 'package:parot/domain/usecase/product/get_product_detail.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../const/enum/login_type.dart';
 import '../../design_component/parot_scaffold.dart';
@@ -56,8 +60,10 @@ class _MainScreenState extends State<MainScreen> {
                                   hintText: "상품id를 입력하면 쿠팡으로 이동",
                                 ),
                                 autofocus: true,
-                                onSubmitted: (value) {
-                                  launchUrl(Uri.parse("coupang://product?pId=$value&sdpReview"));
+                                onSubmitted: (value) async {
+                                  var response = await InsertProductDataToDB()
+                                      .call(request: ProductDetailRequest(productId: "6329328037", itemId: "874629318"));
+                                  log(jsonEncode(response.body));
                                 },
                               ),
                             ),
