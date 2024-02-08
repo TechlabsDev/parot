@@ -12,4 +12,14 @@ class ProductDetailRequest {
       'itemId': itemId,
     };
   }
+
+  ProductDetailRequest copyWith({
+    String? productId,
+    String? itemId,
+  }) {
+    return ProductDetailRequest(
+      productId: productId ?? this.productId,
+      itemId: itemId ?? this.itemId,
+    );
+  }
 }
