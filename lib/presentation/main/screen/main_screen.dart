@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/data/source/request/product_detail_request.dart';
@@ -44,6 +41,22 @@ class _MainScreenState extends State<MainScreen> {
                               onPressed: controller.signIn.handleNaverSignIn,
                               child: const Text("네이버 로그인"),
                             ),
+                            if (GetPlatform.isWeb) const SizedBox(height: 20),
+                            if (GetPlatform.isWeb)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: TextField(
+                                  decoration: const InputDecoration(
+                                    hintText: "상품id를 입력하면 쿠팡으로 이동",
+                                  ),
+                                  autofocus: true,
+                                  onSubmitted: (value) async {
+                                    OpenCoupang().call(productId: value);
+                                    InsertProductDataToDB()
+                                        .call(request: ProductDetailRequest(productId: "6329328037", itemId: "874629318"));
+                                  },
+                                ),
+                              ),
                           ],
                         )
                       : Column(
@@ -62,10 +75,8 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                                 autofocus: true,
                                 onSubmitted: (value) async {
-                                  var response = await InsertProductDataToDB()
-                                      .call(request: ProductDetailRequest(productId: "6329328037", itemId: "874629318"));
-                                  log(jsonEncode(response.body));
-                                  await OpenCoupang().call(productId: value);
+                                  OpenCoupang().call(productId: value);
+                                  InsertProductDataToDB().call(request: ProductDetailRequest(productId: "6329328037", itemId: "874629318"));
                                 },
                               ),
                             ),
