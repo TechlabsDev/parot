@@ -99,29 +99,29 @@ flutter:
   fonts:
     - family: Lato
       fonts:
-        - asset: assets/fonts/LatoRegular.ttf
+        - asset: asset/font/LatoRegular.ttf
           weight: 400
-        - asset: assets/fonts/LatoBold.ttf
+        - asset: asset/font/LatoBold.ttf
           weight: 700
 
     - family: Pretendard
       fonts:
-        - asset: assets/fonts/Pretendard-Regular.otf
+        - asset: asset/font/Pretendard-Regular.otf
           weight: 400
-        - asset: assets/fonts/Pretendard-Medium.otf
+        - asset: asset/font/Pretendard-Medium.otf
           weight: 500
-        - asset: assets/fonts/Pretendard-Bold.otf
+        - asset: asset/font/Pretendard-Bold.otf
           weight: 700
 
     - family: SpoqaHan
       fonts:
-        - asset: assets/fonts/SpoqaHanSansThin.otf
+        - asset: asset/font/SpoqaHanSansThin.otf
           weight: 100
-        - asset: assets/fonts/SpoqaHanSansLight.otf
+        - asset: asset/font/SpoqaHanSansLight.otf
           weight: 200
-        - asset: assets/fonts/SpoqaHanSansRegular.otf
+        - asset: asset/font/SpoqaHanSansRegular.otf
           weight: 400
-        - asset: assets/fonts/SpoqaHanSansBold.otf
+        - asset: asset/font/SpoqaHanSansBold.otf
           weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

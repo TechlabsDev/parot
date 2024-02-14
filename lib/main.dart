@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       title: '패럿패럿',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        splashColor: Colors.transparent, // 리플 이펙트 제거
+        highlightColor: Colors.transparent, // 탭 하이라이트 색상 제거
         useMaterial3: true,
         fontFamily: "Pretendard", //기본 폰트는 Pretendard
       ),
