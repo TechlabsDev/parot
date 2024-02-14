@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
 import '../../design_component/parot_scaffold.dart';
-import '../widget/bottom_nav.dart';
+import '../widget/bottom_nav_widget/bottom_nav.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

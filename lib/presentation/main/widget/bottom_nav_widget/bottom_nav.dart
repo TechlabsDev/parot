@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
-import '../../design_component/parot_color.dart';
+import '../../../design_component/parot_color.dart';
+import 'bottom_nav_item.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -31,20 +32,17 @@ class _BottomNavState extends State<BottomNav> {
           3: Image.asset("asset/icon/fill_mypage.png", height: 24, width: 24, color: colorMap[3]),
         };
 
+        Map<int, int> notiCountMap = {
+          0: controller.cartNotiCount.value,
+          1: controller.hotdealNotiCount.value,
+          2: controller.communityNotiCount.value,
+          3: controller.mypageNotiCount.value,
+        };
+
         Map<int, String> labelMap = {0: "찜", 1: "핫딜", 2: "커뮤니티", 3: "마이페이지"};
-        List<Widget?> dummyNotiLabelList = [Text("9"), Text("2"), null, Text("4")];
         List<BottomNavigationBarItem> itemList = List.generate(
           4,
-          (index) => BottomNavigationBarItem(
-            icon: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                iconMap[index]!,
-                Positioned(right: -5, top: -5, child: Badge(label: dummyNotiLabelList[index], backgroundColor: ParotColor.red500)),
-              ],
-            ),
-            label: labelMap[index],
-          ),
+          (index) => BottomNavItem(icon: iconMap[index]!, label: labelMap[index]!, notiCount: notiCountMap[index]!),
         );
         return BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -55,9 +53,7 @@ class _BottomNavState extends State<BottomNav> {
           selectedItemColor: ParotColor.gray800,
           unselectedItemColor: ParotColor.gray200,
           currentIndex: controller.currentBottomNavIndex.value,
-          onTap: (selectedIndex) {
-            controller.currentBottomNavIndex.value = selectedIndex;
-          },
+          onTap: controller.setBottomNavIndex,
           items: itemList,
         );
       },

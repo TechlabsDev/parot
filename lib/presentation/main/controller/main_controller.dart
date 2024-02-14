@@ -12,6 +12,12 @@ class MainController extends GetxController {
   Rx<SignInType> loginType = SignInType.none.obs;
   RxList<double> priceList = <double>[].obs;
   RxInt currentBottomNavIndex = 0.obs;
+
+  RxInt cartNotiCount = 9.obs;
+  RxInt hotdealNotiCount = 4.obs;
+  RxInt communityNotiCount = 0.obs;
+  RxInt mypageNotiCount = 4.obs;
+
   Stream? signInStream;
   MainSignIn signIn = MainSignIn();
   @override
@@ -24,13 +30,16 @@ class MainController extends GetxController {
         loginType.value = SignInType.values.byName(event);
       });
     }
-    Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      if (priceList.length > 30) {
-        priceList.removeAt(0);
-      }
-      priceList.add((Random().nextDouble() * 40000) + 10000);
-      update();
+    Timer.periodic(const Duration(milliseconds: 500), (timer) {
+      communityNotiCount.value = Random().nextInt(200) + 1;
+      cartNotiCount.value = Random().nextInt(200) + 1;
+      hotdealNotiCount.value = Random().nextInt(200) + 2;
+      mypageNotiCount.value = Random().nextInt(200) + 1;
     });
     super.onInit();
+  }
+
+  void setBottomNavIndex(int index) {
+    currentBottomNavIndex.value = index;
   }
 }
