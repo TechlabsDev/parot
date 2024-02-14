@@ -48,6 +48,7 @@ class _BottomNavState extends State<BottomNav> {
           type: BottomNavigationBarType.fixed,
           selectedFontSize: 11,
           unselectedFontSize: 11,
+          elevation: 0,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
           selectedItemColor: ParotColor.gray800,
