@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/design_component/one_depth_header.dart';
+import 'package:parot/presentation/design_component/parot_elavated_button.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
 import '../../design_component/parot_scaffold.dart';
@@ -33,7 +35,16 @@ class _MainScreenState extends State<MainScreen> {
               onNotiTap: () => showPopup(content: "알림 아이콘 터치"),
               onSearchTap: () => showPopup(content: "검색 아이콘 터치"),
             ),
-            body: Container(),
+            body: Center(
+              child: ParotElevatedButton(
+                enabled: true,
+                leadingIcon: Image.asset("asset/icon/stroke_refresh.png", width: 16, height: 16, color: Colors.white),
+                trailingIcon: Image.asset("asset/icon/stroke_next.png", width: 16, height: 16, color: Colors.white),
+                onPressed: () => showPopup(content: "필터 적용하기"),
+                textColor: Colors.white,
+                text: "필터 적용하기",
+              ),
+            ),
             bottomNavigationBar: const BottomNav(),
           );
         });

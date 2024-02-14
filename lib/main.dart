@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Pretendard", //기본 폰트는 Pretendard
       ),
       getPages: ParotPage.pages,
-      home: GetPlatform.isWeb ? const MobileSizeOnWeb(child: MainScreen(), color: Colors.white) : const MainScreen(),
+      home: GetPlatform.isWeb ? const MobileSizeOnWeb(color: Colors.white, child: MainScreen()) : const MainScreen(),
     );
   }
 }
