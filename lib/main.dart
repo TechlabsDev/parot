@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        fontFamily: "Pretendard", //기본 폰트는 Pretendard
       ),
       getPages: ParotPage.pages,
       home: const MainScreen(),
