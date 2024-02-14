@@ -11,6 +11,7 @@ import '../../../const/enum/login_type.dart';
 class MainController extends GetxController {
   Rx<SignInType> loginType = SignInType.none.obs;
   RxList<double> priceList = <double>[].obs;
+  RxInt currentBottomNavIndex = 0.obs;
   Stream? signInStream;
   MainSignIn signIn = MainSignIn();
   @override
