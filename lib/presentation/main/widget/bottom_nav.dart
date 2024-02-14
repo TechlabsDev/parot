@@ -32,7 +32,7 @@ class _BottomNavState extends State<BottomNav> {
         };
 
         Map<int, String> labelMap = {0: "찜", 1: "핫딜", 2: "커뮤니티", 3: "마이페이지"};
-
+        List<Widget?> dummyNotiLabelList = [Text("9"), Text("2"), null, Text("4")];
         List<BottomNavigationBarItem> itemList = List.generate(
           4,
           (index) => BottomNavigationBarItem(
@@ -40,7 +40,7 @@ class _BottomNavState extends State<BottomNav> {
               clipBehavior: Clip.none,
               children: [
                 iconMap[index]!,
-                const Positioned(right: -5, top: -5, child: Badge(label: Text("9"), backgroundColor: ParotColor.red500)),
+                Positioned(right: -5, top: -5, child: Badge(label: dummyNotiLabelList[index], backgroundColor: ParotColor.red500)),
               ],
             ),
             label: labelMap[index],
