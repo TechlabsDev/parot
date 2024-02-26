@@ -11,9 +11,12 @@ class ParrotSearchHeader extends AppBar {
     TextStyle? hintStyle,
     int? maxLength,
     Function(String str)? onSubmit,
+    Function(String str)? onChanged,
   }) : super(
           leading: leading ?? IconButton(onPressed: Get.back, icon: Image.asset("asset/icon/stroke_arrow_left.png", height: 24, width: 24)),
           title: CupertinoSearchTextField(
+            onSubmitted: onSubmit,
+            onChanged: onChanged,
             prefixIcon: const SizedBox.shrink(),
             backgroundColor: Colors.transparent,
             placeholder: hintText ?? "URL 또는 검색어를 입력해주세요",
