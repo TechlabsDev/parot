@@ -100,6 +100,15 @@ class _TempScreenState extends State<TempScreen> {
                   const SizedBox(height: 20),
                   SizedBox(
                     width: 350,
+                    child: ParrotCommentCell(
+                      userImageUrl: "https://picsum.photos/1024",
+                      userNickname: "닉네임은열글자까지야",
+                      dateTime: DateTime.now(),
+                      content: "댓글 내용이 나옴 " * 8,
+                      likeCount: 1209,
+                      onRecommentTap: () {},
+                      commentCount: 2098,
+                    ),
                   ),
                 ],
               ),

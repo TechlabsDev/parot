@@ -43,6 +43,7 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
         const SizedBox(width: 8),
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -67,7 +68,7 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                     onPressed: () {},
                     icon: Image.asset(
@@ -80,12 +81,15 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
                 ],
               ),
               const SizedBox(height: 8),
-              Text(
-                widget.content,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: ParrotColor.gray600,
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: Text(
+                  widget.content,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: ParrotColor.gray600,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -105,7 +109,7 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
                   Image.asset("asset/icon/stroke_community.png", width: 16, height: 16, color: ParrotColor.gray400),
                   const SizedBox(width: 4),
                   Text(
-                    widget.likeCount.toCommaFormat,
+                    widget.commentCount.toCommaFormat,
                     style: const TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
