@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/const/route/page.dart';
+import 'package:parot/presentation/design_component/parrot_color.dart';
 import 'package:parot/presentation/main/screen/main_screen.dart';
 
 void main() async {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: '패럿패럿',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: ParrotColor.red500),
         splashColor: Colors.transparent, // 리플 이펙트 제거
         highlightColor: Colors.transparent, // 탭 하이라이트 색상 제거
         useMaterial3: true,
