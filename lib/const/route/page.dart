@@ -5,6 +5,8 @@ import 'package:parot/presentation/sign_in_for_web/sign_in_with_kakao_web.dart';
 import 'package:parot/presentation/sign_in_for_web/sign_in_with_naver_web.dart';
 import 'package:parot/presentation/temp/screen/temp_screen.dart';
 
+import '../../presentation/temp/screen/temp_search_screen.dart';
+
 class ParrotPage {
   static List<GetPage> pages = [
     GetPage(
@@ -21,8 +23,13 @@ class ParrotPage {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: ParrotPath.TEMP.TEMP_PATH,
+      name: ParrotPath.TEMP.SWITCH_TEMP_PATH,
       page: () => const TempScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: ParrotPath.TEMP.SEARCH_TEMP_PATH,
+      page: () => const TempSearchScreen(),
       transition: Transition.fadeIn,
     ),
   ];
