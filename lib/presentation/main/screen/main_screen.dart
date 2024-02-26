@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:parot/presentation/design_component/one_depth_header.dart';
+import 'package:parot/const/route/path_base.dart';
 import 'package:parot/presentation/design_component/parot_elavated_button.dart';
+import 'package:parot/presentation/design_component/parrot_header.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
 import '../../design_component/parot_scaffold.dart';
@@ -25,12 +26,12 @@ class _MainScreenState extends State<MainScreen> {
         builder: (controller) {
           Map<int, Widget> headerTitleMap = {
             0: Image.asset("asset/logo/logo.png", width: 144, height: 32),
-            1: Text("핫딜", style: oneDepthHeaderStyle),
-            2: Text("커뮤니티", style: oneDepthHeaderStyle),
-            3: Text("마이페이지", style: oneDepthHeaderStyle),
+            1: Text("핫딜", style: parrotHeaderStyle),
+            2: Text("커뮤니티", style: parrotHeaderStyle),
+            3: Text("마이페이지", style: parrotHeaderStyle),
           };
           return ParrotScaffold(
-            appBar: OneDepthHeader(
+            appBar: ParrotHeader(
               title: headerTitleMap[controller.currentBottomNavIndex.value]!,
               onNotiTap: () => showPopup(content: "알림 아이콘 터치"),
               onSearchTap: () => showPopup(content: "검색 아이콘 터치"),
@@ -40,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
                 enabled: true,
                 leadingIcon: Image.asset("asset/icon/stroke_refresh.png", width: 16, height: 16, color: Colors.white),
                 trailingIcon: Image.asset("asset/icon/stroke_next.png", width: 16, height: 16, color: Colors.white),
-                onPressed: () => showPopup(content: "필터 적용하기"),
+                onPressed: () => Get.toNamed(ParotPath.TEMP.TEMP_PATH),
                 textColor: Colors.white,
                 text: "필터 적용하기",
               ),

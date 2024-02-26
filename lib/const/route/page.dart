@@ -3,6 +3,7 @@ import 'package:parot/const/route/path_base.dart';
 import 'package:parot/presentation/main/screen/main_screen.dart';
 import 'package:parot/presentation/sign_in_for_web/sign_in_with_kakao_web.dart';
 import 'package:parot/presentation/sign_in_for_web/sign_in_with_naver_web.dart';
+import 'package:parot/presentation/temp/screen/temp_screen.dart';
 
 class ParotPage {
   static List<GetPage> pages = [
@@ -17,6 +18,11 @@ class ParotPage {
     GetPage(
       name: ParotPath.SIGN_IN.WITH_NAVER_WEB,
       page: () => const SignInWithNaverWeb(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: ParotPath.TEMP.TEMP_PATH,
+      page: () => const TempScreen(),
       transition: Transition.fadeIn,
     ),
   ];
