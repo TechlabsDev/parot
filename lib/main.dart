@@ -21,6 +21,13 @@ class MyApp extends StatelessWidget {
         splashColor: Colors.transparent, // 리플 이펙트 제거
         highlightColor: Colors.transparent, // 탭 하이라이트 색상 제거
         useMaterial3: true,
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+        ),
         fontFamily: "Pretendard", //기본 폰트는 Pretendard
       ),
       getPages: ParrotPage.pages,

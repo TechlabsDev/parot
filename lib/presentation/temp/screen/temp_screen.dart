@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/design_component/parrot_check_circle_in_row.dart';
+import 'package:parot/presentation/design_component/parrot_comment_input_field.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
 import 'package:parot/presentation/design_component/parrot_scaffold.dart';
 import 'package:parot/presentation/design_component/parrot_text_style.dart';
@@ -98,6 +99,9 @@ class _TempScreenState extends State<TempScreen> {
                 ],
               ),
             ),
+          ),
+          bottomSheet: ParrotCommentInputField(
+            commentTargetList: ["haedong", "inho"],
           ),
         );
       },
