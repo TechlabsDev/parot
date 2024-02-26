@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:parot/presentation/design_component/mobile_size_on_web.dart';
 
 class ParrotScaffold extends StatefulWidget {
   const ParrotScaffold({
@@ -63,35 +64,38 @@ class ParrotScaffold extends StatefulWidget {
 class _ParrotScaffoldState extends State<ParrotScaffold> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Get.focusScope?.unfocus();
-      },
-      child: Scaffold(
-        appBar: widget.appBar,
-        body: widget.body,
-        floatingActionButton: widget.floatingActionButton,
-        floatingActionButtonLocation: widget.floatingActionButtonLocation,
-        floatingActionButtonAnimator: widget.floatingActionButtonAnimator,
-        persistentFooterButtons: widget.persistentFooterButtons,
-        persistentFooterAlignment: widget.persistentFooterAlignment,
-        drawer: widget.drawer,
-        onDrawerChanged: widget.onDrawerChanged,
-        endDrawer: widget.endDrawer,
-        onEndDrawerChanged: widget.onEndDrawerChanged,
-        bottomNavigationBar: widget.bottomNavigationBar,
-        bottomSheet: widget.bottomSheet,
-        backgroundColor: widget.backgroundColor,
-        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
-        primary: widget.primary,
-        drawerDragStartBehavior: widget.drawerDragStartBehavior,
-        extendBody: widget.extendBody,
-        extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
-        drawerScrimColor: widget.drawerScrimColor,
-        drawerEdgeDragWidth: widget.drawerEdgeDragWidth,
-        drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
-        endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
-        restorationId: widget.restorationId,
+    return MobileSizeOnWeb(
+      enabled: GetPlatform.isWeb,
+      child: GestureDetector(
+        onTap: () {
+          Get.focusScope?.unfocus();
+        },
+        child: Scaffold(
+          appBar: widget.appBar,
+          body: widget.body,
+          floatingActionButton: widget.floatingActionButton,
+          floatingActionButtonLocation: widget.floatingActionButtonLocation,
+          floatingActionButtonAnimator: widget.floatingActionButtonAnimator,
+          persistentFooterButtons: widget.persistentFooterButtons,
+          persistentFooterAlignment: widget.persistentFooterAlignment,
+          drawer: widget.drawer,
+          onDrawerChanged: widget.onDrawerChanged,
+          endDrawer: widget.endDrawer,
+          onEndDrawerChanged: widget.onEndDrawerChanged,
+          bottomNavigationBar: widget.bottomNavigationBar,
+          bottomSheet: widget.bottomSheet,
+          backgroundColor: widget.backgroundColor,
+          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+          primary: widget.primary,
+          drawerDragStartBehavior: widget.drawerDragStartBehavior,
+          extendBody: widget.extendBody,
+          extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
+          drawerScrimColor: widget.drawerScrimColor,
+          drawerEdgeDragWidth: widget.drawerEdgeDragWidth,
+          drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
+          endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
+          restorationId: widget.restorationId,
+        ),
       ),
     );
   }

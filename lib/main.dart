@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/const/route/page.dart';
-import 'package:parot/presentation/design_component/mobile_size_on_web.dart';
 import 'package:parot/presentation/main/screen/main_screen.dart';
 
 void main() async {
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Pretendard", //기본 폰트는 Pretendard
       ),
       getPages: ParrotPage.pages,
-      home: GetPlatform.isWeb ? const MobileSizeOnWeb(color: Colors.white, child: MainScreen()) : const MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
