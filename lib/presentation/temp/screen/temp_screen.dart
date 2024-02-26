@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:parot/presentation/design_component/parrot_check_circle_in_row.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
 import 'package:parot/presentation/design_component/parrot_scaffold.dart';
 import 'package:parot/presentation/design_component/parrot_text_style.dart';
 import 'package:parot/presentation/temp/controller/temp_controller.dart';
 
+import '../../design_component/parrot_check_circle.dart';
 import '../../design_component/parrot_color.dart';
 import '../../design_component/parrot_switch.dart';
 
@@ -32,6 +34,7 @@ class _TempScreenState extends State<TempScreen> {
           body: SingleChildScrollView(
             child: Center(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 20),
                   ParrotSwitch(
@@ -43,15 +46,52 @@ class _TempScreenState extends State<TempScreen> {
                   ),
                   Text("토글 스위치 ${controller.switchValue.isTrue ? "켜짐" : "꺼짐"}"),
                   const SizedBox(height: 20),
-                  CircleAvatar(
-                    backgroundColor: ParrotColor.red500,
-                    radius: 12,
-                    child: Center(
-                      child: Image.asset(
-                        "asset/icon/stroke_check.png",
-                        height: 12,
-                        width: 12,
-                        color: Colors.white,
+                  ParrotCheckCircle(
+                    value: controller.checkCircleValue.value,
+                    onChanged: (value) {
+                      controller.checkCircleValue.value = value;
+                    },
+                  ),
+                  Text("체크박스 ${controller.checkCircleValue.isTrue ? "켜짐" : "꺼짐"}"),
+                  const SizedBox(height: 20),
+                  ParrotCheckCircleInRow(
+                    value: controller.checkCircleInRowValue.value,
+                    onChanged: (value) {
+                      controller.checkCircleInRowValue.value = value;
+                    },
+                    titleText: Text(
+                      "전체 약관 동의 ${controller.checkCircleInRowValue.isTrue ? "함" : "안함"}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 300,
+                    child: ParrotCheckCircleInRow(
+                      value: controller.checkCircleInRowValue2.value,
+                      onChanged: (value) {
+                        controller.checkCircleInRowValue2.value = value;
+                      },
+                      titleText: Text(
+                        "(필수) 이용 약관 동의 ${controller.checkCircleInRowValue2.isTrue ? "함" : "안함"}",
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      trailing: TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "보기",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w500,
+                            color: ParrotColor.gray500,
+                          ),
+                        ),
                       ),
                     ),
                   ),

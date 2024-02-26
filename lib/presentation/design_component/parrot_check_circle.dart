@@ -9,10 +9,14 @@ class ParrotCheckCircle extends StatefulWidget {
     required this.value,
     required this.onChanged,
     this.color,
+    this.radius,
+    this.checkIconSize,
   });
   ValueChanged<bool> onChanged;
   bool value;
   Color? color;
+  double? radius;
+  Size? checkIconSize;
 }
 
 class _ParrotCheckCircleState extends State<ParrotCheckCircle> {
@@ -34,13 +38,13 @@ class _ParrotCheckCircleState extends State<ParrotCheckCircle> {
       },
       child: CircleAvatar(
         backgroundColor: widget.value ? widget.color ?? ParrotColor.red500 : ParrotColor.gray50,
-        radius: 12,
+        radius: widget.radius ?? 12,
         child: Center(
           child: Image.asset(
             "asset/icon/stroke_check.png",
-            height: 12,
-            width: 12,
-            color: Colors.white,
+            height: widget.checkIconSize == null ? 12 : widget.checkIconSize!.height,
+            width: widget.checkIconSize == null ? 12 : widget.checkIconSize!.width,
+            color: widget.value ? Colors.white : ParrotColor.gray300,
           ),
         ),
       ),
