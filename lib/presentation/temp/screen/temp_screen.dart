@@ -9,6 +9,7 @@ import 'package:parot/presentation/temp/controller/temp_controller.dart';
 
 import '../../design_component/parrot_check_circle.dart';
 import '../../design_component/parrot_color.dart';
+import '../../design_component/parrot_comment_cell.dart';
 import '../../design_component/parrot_switch.dart';
 
 //아직 디자인이 다 나오지 않았을 때, 컴포넌트만 개발할 때 임시로 쓸 화면
@@ -95,6 +96,10 @@ class _TempScreenState extends State<TempScreen> {
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 350,
                   ),
                 ],
               ),

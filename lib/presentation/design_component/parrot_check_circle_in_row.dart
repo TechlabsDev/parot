@@ -41,7 +41,12 @@ class _ParrotCheckCircleInRowState extends State<ParrotCheckCircleInRow> {
         children: [
           ParrotCheckCircle(
             value: widget.value,
-            onChanged: (_) {},
+            onChanged: (value) {
+              setState(() {
+                widget.value = !widget.value;
+              });
+              widget.onChanged(widget.value);
+            },
             color: widget.checkCircleColor,
           ),
           const SizedBox(width: 8),
