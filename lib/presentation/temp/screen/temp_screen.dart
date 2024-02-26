@@ -101,6 +101,7 @@ class _TempScreenState extends State<TempScreen> {
             ),
           ),
           bottomSheet: ParrotCommentInputField(
+            hintText: "@haedong, @inho 대댓글 UI 나옴",
             commentTargetList: ["haedong", "inho"],
           ),
         );
