@@ -42,6 +42,19 @@ class _TempScreenState extends State<TempScreen> {
                     activeColor: ParrotColor.red500,
                   ),
                   Text("토글 스위치 ${controller.switchValue.isTrue ? "켜짐" : "꺼짐"}"),
+                  const SizedBox(height: 20),
+                  CircleAvatar(
+                    backgroundColor: ParrotColor.red500,
+                    radius: 12,
+                    child: Center(
+                      child: Image.asset(
+                        "asset/icon/stroke_check.png",
+                        height: 12,
+                        width: 12,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
