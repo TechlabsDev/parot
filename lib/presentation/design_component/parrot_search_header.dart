@@ -9,6 +9,7 @@ class ParrotSearchHeader extends AppBar {
     Widget? leading,
     String? hintText,
     TextStyle? hintStyle,
+    TextStyle? style,
     int? maxLength,
     Function(String str)? onSubmit,
     Function(String str)? onChanged,
@@ -25,6 +26,12 @@ class ParrotSearchHeader extends AppBar {
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: ParrotColor.gray200,
+                ),
+            style: style ??
+                TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: ParrotColor.gray800,
                 ),
           ),
           centerTitle: true,
