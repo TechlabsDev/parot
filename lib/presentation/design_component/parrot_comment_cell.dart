@@ -15,6 +15,7 @@ class ParrotCommentCell extends StatefulWidget {
     required this.likeCount,
     required this.commentCount,
     this.onRecommentTap,
+    this.isRecomment = false,
   });
 
   final Function? onRecommentTap;
@@ -24,6 +25,7 @@ class ParrotCommentCell extends StatefulWidget {
   final DateTime dateTime;
   final int likeCount;
   final int commentCount;
+  final bool isRecomment;
 }
 
 class _ParrotCommentCellState extends State<ParrotCommentCell> {
@@ -33,6 +35,7 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (widget.isRecomment) const SizedBox(width: 36),
         Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: CircleAvatar(
@@ -105,17 +108,19 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
                       color: ParrotColor.gray400,
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  Image.asset("asset/icon/stroke_community.png", width: 16, height: 16, color: ParrotColor.gray400),
-                  const SizedBox(width: 4),
-                  Text(
-                    widget.commentCount.toCommaFormat,
-                    style: const TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      color: ParrotColor.gray400,
+                  if (!widget.isRecomment) ...[
+                    const SizedBox(width: 16),
+                    Image.asset("asset/icon/stroke_community.png", width: 16, height: 16, color: ParrotColor.gray400),
+                    const SizedBox(width: 4),
+                    Text(
+                      widget.commentCount.toCommaFormat,
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: ParrotColor.gray400,
+                      ),
                     ),
-                  ),
+                  ],
                   const SizedBox(width: 8),
                   TextButton(
                     onPressed: () => widget.onRecommentTap,
