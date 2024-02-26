@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:parot/presentation/design_component/parot_color.dart';
+import 'package:parot/presentation/design_component/parrot_color.dart';
 
-class ParotElevatedButton extends ElevatedButton {
-  ParotElevatedButton({
+class ParrotElevatedButton extends ElevatedButton {
+  ParrotElevatedButton({
     super.key,
     required VoidCallback onPressed,
     required String text,
@@ -32,7 +32,7 @@ class ParotElevatedButton extends ElevatedButton {
                   color: enabled
                       ? textColor ?? Colors.white
                       : (backgroundColor != null && backgroundColor == Colors.white)
-                          ? ParotColor.gray100
+                          ? ParrotColor.gray100
                           : Colors.white,
                 ),
               ),
@@ -43,15 +43,15 @@ class ParotElevatedButton extends ElevatedButton {
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius ?? 12),
-              side: BorderSide(color: enabled ? borderColor ?? ParotColor.gray800 : ParotColor.gray100),
+              side: BorderSide(color: enabled ? borderColor ?? ParrotColor.gray800 : ParrotColor.gray100),
             ),
             elevation: elevation ?? 0.0,
             fixedSize: size ?? const Size(218, 52),
             backgroundColor: enabled
-                ? backgroundColor ?? ParotColor.gray800
+                ? backgroundColor ?? ParrotColor.gray800
                 : (backgroundColor != null && backgroundColor == Colors.white)
                     ? Colors.white
-                    : ParotColor.gray100,
+                    : ParrotColor.gray100,
           ),
         );
 }

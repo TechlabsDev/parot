@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
-import '../../../design_component/parot_color.dart';
+import '../../../design_component/parrot_color.dart';
 import 'bottom_nav_item.dart';
 
 class BottomNav extends StatefulWidget {
@@ -19,10 +19,10 @@ class _BottomNavState extends State<BottomNav> {
       init: Get.put(MainController()),
       builder: (controller) {
         Map<int, Color> colorMap = {
-          0: controller.currentBottomNavIndex.value == 0 ? ParotColor.gray800 : ParotColor.gray200,
-          1: controller.currentBottomNavIndex.value == 1 ? ParotColor.gray800 : ParotColor.gray200,
-          2: controller.currentBottomNavIndex.value == 2 ? ParotColor.gray800 : ParotColor.gray200,
-          3: controller.currentBottomNavIndex.value == 3 ? ParotColor.gray800 : ParotColor.gray200,
+          0: controller.currentBottomNavIndex.value == 0 ? ParrotColor.gray800 : ParrotColor.gray200,
+          1: controller.currentBottomNavIndex.value == 1 ? ParrotColor.gray800 : ParrotColor.gray200,
+          2: controller.currentBottomNavIndex.value == 2 ? ParrotColor.gray800 : ParrotColor.gray200,
+          3: controller.currentBottomNavIndex.value == 3 ? ParrotColor.gray800 : ParrotColor.gray200,
         };
 
         Map<int, Image> iconMap = {
@@ -51,8 +51,8 @@ class _BottomNavState extends State<BottomNav> {
           elevation: 0,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
-          selectedItemColor: ParotColor.gray800,
-          unselectedItemColor: ParotColor.gray200,
+          selectedItemColor: ParrotColor.gray800,
+          unselectedItemColor: ParrotColor.gray200,
           currentIndex: controller.currentBottomNavIndex.value,
           onTap: controller.setBottomNavIndex,
           items: itemList,

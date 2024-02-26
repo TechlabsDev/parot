@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/const/route/path_base.dart';
-import 'package:parot/presentation/design_component/parot_elavated_button.dart';
+import 'package:parot/presentation/design_component/parrot_elavated_button.dart';
 import 'package:parot/presentation/design_component/parrot_header.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
-import '../../design_component/parot_scaffold.dart';
-import '../../design_component/parot_text_style.dart';
+import '../../design_component/parrot_scaffold.dart';
+import '../../design_component/parrot_text_style.dart';
 import '../widget/bottom_nav_widget/bottom_nav.dart';
 
 class MainScreen extends StatefulWidget {
@@ -37,11 +37,11 @@ class _MainScreenState extends State<MainScreen> {
               onSearchTap: () => showPopup(content: "검색 아이콘 터치"),
             ),
             body: Center(
-              child: ParotElevatedButton(
+              child: ParrotElevatedButton(
                 enabled: true,
                 leadingIcon: Image.asset("asset/icon/stroke_refresh.png", width: 16, height: 16, color: Colors.white),
                 trailingIcon: Image.asset("asset/icon/stroke_next.png", width: 16, height: 16, color: Colors.white),
-                onPressed: () => Get.toNamed(ParotPath.TEMP.TEMP_PATH),
+                onPressed: () => Get.toNamed(ParrotPath.TEMP.TEMP_PATH),
                 textColor: Colors.white,
                 text: "필터 적용하기",
               ),

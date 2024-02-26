@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ParotColor {
+class ParrotColor {
   /*gray*/
   static const Color gray900 = Color(0xFF121212);
   static const Color gray800 = Color(0xFF222222);
