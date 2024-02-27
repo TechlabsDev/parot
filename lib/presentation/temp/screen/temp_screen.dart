@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:parot/extension/int_extension.dart';
 import 'package:parot/presentation/design_component/parrot_check_circle_in_row.dart';
 import 'package:parot/presentation/design_component/parrot_comment_input_field.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
 import 'package:parot/presentation/design_component/parrot_text_style.dart';
 import 'package:parot/presentation/temp/controller/temp_controller.dart';
-import 'package:styled_text/styled_text.dart';
 
+import '../../design_component/parrot_alarm_cell.dart';
 import '../../design_component/parrot_check_circle.dart';
 import '../../design_component/parrot_color.dart';
 import '../../design_component/parrot_comment_cell.dart';
@@ -143,46 +142,53 @@ class _TempScreenState extends State<TempScreen> {
                   ),
                   const Divider(height: 40),
                   SizedBox(
-                    width: 380,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 64,
-                          width: 64,
-                          child: Card(
-                            elevation: 0,
-                            clipBehavior: Clip.hardEdge,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              side: const BorderSide(color: ParrotColor.gray50),
-                            ),
-                            child: Image.network("https://picsum.photos/1022"),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "닉네임은열글자까지야님, 고객센터 답변입니다",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            StyledText(text: "<pt>현재가</pt> <b>${42890.toCommaFormat}원</b>", tags: {
-                              "pt": StyledTextTag(
-                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: ParrotColor.gray600),
-                              ),
-                              "b": StyledTextTag(
-                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: ParrotColor.gray800),
-                              ),
-                            }),
-                          ],
-                        ),
-                      ],
+                    width: 340,
+                    child: ParrotAlarmCell(
+                      productImage: "https://picsum.photos/1022",
+                      title: "YOUNCO 화장실 젠다이 선반 무타공 선반 악기",
+                      content: "상품 설명이 나옴",
+                      currentPrice: 28000,
+                      averagePrice: 8000,
+                      dateTime: DateTime.now(),
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 340,
+                    child: ParrotAlarmCell(
+                      productImage: "https://picsum.photos/1029",
+                      title: "일론 머스크 집에서 직구! 전기 자동차 필수 충전기",
+                      content: "상품 설명이 나옴",
+                      currentPrice: 3500,
+                      averagePrice: 25000,
+                      dateTime: DateTime.now(),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 340,
+                    child: ParrotAlarmCell(
+                      productImage: "https://picsum.photos/1032",
+                      title: "지하철 무제한 왕복 이용권 1+1",
+                      content: "상품 설명이 나옴",
+                      currentPrice: 500000,
+                      averagePrice: 500000,
+                      dateTime: DateTime.now(),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 340,
+                    child: ParrotAlarmCell(
+                      productImage: "https://picsum.photos/1220",
+                      title: "[직관] 주커버그 VS 머스크 죽음의 댄스배틀",
+                      content: "안녕하세요. 닉네임은열글자까지야 님, 문의주신 상품은 현재 가격정보가 쌓이지 않았습니다",
+                      currentPrice: -1,
+                      averagePrice: -1,
+                      dateTime: DateTime.now(),
+                    ),
+                  ),
+                  const SizedBox(height: 300),
                 ],
               ),
             ),
