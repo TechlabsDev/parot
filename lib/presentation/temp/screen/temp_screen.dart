@@ -195,7 +195,7 @@ class _TempScreenState extends State<TempScreen> {
                     size: const Size(380, 200),
                     foregroundPainter: ChartPainter(
                       color: ParrotColor.red500,
-                      priceList: [100, 250, 300, 400, 800, 600, 200, 300, 400, 100],
+                      priceList: [100, 250, 300, 400, 800, 600, 200, 300, 400, 100, 800],
                     ),
                   ),
                   const SizedBox(height: 300),
@@ -240,9 +240,15 @@ class ChartPainter extends CustomPainter {
       ..color = color;
 
     Paint pointPaint = Paint()
-      ..strokeWidth = 6.0
-      ..style = PaintingStyle.fill
+      ..strokeWidth = 12.0
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
       ..color = color;
+    Paint pointCenterPaint = Paint()
+      ..strokeWidth = 7.0
+      ..style = PaintingStyle.fill
+      ..strokeCap = StrokeCap.round
+      ..color = Colors.white;
 
     Path path = Path();
     path.moveTo(0, size.height);
@@ -253,6 +259,7 @@ class ChartPainter extends CustomPainter {
       canvas.drawPath(path, linePaint);
     }
     canvas.drawPoints(PointMode.points, [offset], pointPaint);
+    canvas.drawPoints(PointMode.points, [offset], pointCenterPaint);
   }
 
   @override
