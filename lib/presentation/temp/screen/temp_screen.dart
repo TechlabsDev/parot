@@ -191,11 +191,53 @@ class _TempScreenState extends State<TempScreen> {
                     ),
                   ),
                   const Divider(height: 40),
-                  CustomPaint(
-                    size: const Size(380, 200),
-                    foregroundPainter: ChartPainter(
-                      color: ParrotColor.red500,
-                      priceList: [100, 250, 300, 400, 800, 600, 200, 300, 400, 100, 800],
+                  SizedBox(
+                    width: 300,
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            Text(
+                              "가격 변동 그래프",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Spacer(),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          "타이밍 BAD...",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: ParrotColor.red500,
+                          ),
+                        ),
+                        const Text(
+                          "평균가보다 훨씬 비싸요. 지금 사면 안돼요",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: ParrotColor.red500,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          children: [
+                            CustomPaint(
+                              size: const Size(300, 200),
+                              foregroundPainter: ChartPainter(
+                                color: ParrotColor.red500,
+                                priceList: [300, 250, 300, 400, 380, 200, 220, 130, 350, 360, 320, 200, 400, 300, 430],
+                              ),
+                            ),
+                            Text("iejqpo"),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 300),
@@ -244,6 +286,7 @@ class ChartPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..color = color;
+
     Paint pointCenterPaint = Paint()
       ..strokeWidth = 7.0
       ..style = PaintingStyle.fill
@@ -251,9 +294,9 @@ class ChartPainter extends CustomPainter {
       ..color = Colors.white;
 
     Path path = Path();
-    path.moveTo(0, size.height);
+    path.moveTo(0, size.height - ((size.height * priceList[0]) / highestPrice));
     Offset offset = const Offset(0, 0);
-    for (int i = 0; i < priceList.length; i++) {
+    for (int i = 1; i < priceList.length; i++) {
       offset = Offset((size.width * i) / priceList.length, size.height - ((size.height * priceList[i]) / highestPrice));
       path.lineTo(offset.dx, offset.dy);
       canvas.drawPath(path, linePaint);
