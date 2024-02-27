@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/design_component/parrot_check_circle_in_row.dart';
 import 'package:parot/presentation/design_component/parrot_comment_input_field.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
+import 'package:parot/presentation/design_component/parrot_price_graph.dart';
 import 'package:parot/presentation/design_component/parrot_text_style.dart';
 import 'package:parot/presentation/temp/controller/temp_controller.dart';
 
@@ -191,53 +190,11 @@ class _TempScreenState extends State<TempScreen> {
                     ),
                   ),
                   const Divider(height: 40),
-                  SizedBox(
-                    width: 300,
-                    child: Column(
-                      children: [
-                        const Row(
-                          children: [
-                            Text(
-                              "가격 변동 그래프",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        const Text(
-                          "타이밍 BAD...",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: ParrotColor.red500,
-                          ),
-                        ),
-                        const Text(
-                          "평균가보다 훨씬 비싸요. 지금 사면 안돼요",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: ParrotColor.red500,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            CustomPaint(
-                              size: const Size(300, 200),
-                              foregroundPainter: ChartPainter(
-                                color: ParrotColor.red500,
-                                priceList: [300, 250, 300, 400, 380, 200, 220, 130, 350, 360, 320, 200, 400, 300, 430],
-                              ),
-                            ),
-                            Text("iejqpo"),
-                          ],
-                        ),
-                      ],
+                  const SizedBox(
+                    width: 350,
+                    height: 330,
+                    child: ParrotPriceGraph(
+                      priceList: [43000, 25000, 38200, 43200, 38500, 20000, 22000, 13000, 35000, 36000, 32000, 20000, 40000, 30000, 43000],
                     ),
                   ),
                   const SizedBox(height: 300),
@@ -252,61 +209,5 @@ class _TempScreenState extends State<TempScreen> {
         );
       },
     );
-  }
-}
-
-class ChartPainter extends CustomPainter {
-  final Color color;
-  final List<int> priceList;
-
-  ChartPainter({
-    required this.color,
-    required this.priceList,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    int highestPrice = priceList.reduce((value, element) => value > element ? value : element);
-    /*
-      size.height : highestPrice = p : price
-      p * highestPrice = size.height * price
-      p = (size.height * price) / highestPrice
-
-      size.width : priceList.length = x : i
-      x * priceList.length = size.width * i
-      x = (size.width * i) / priceList.length
-    */
-    Paint linePaint = Paint()
-      ..strokeWidth = 3.0
-      ..style = PaintingStyle.stroke
-      ..color = color;
-
-    Paint pointPaint = Paint()
-      ..strokeWidth = 12.0
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..color = color;
-
-    Paint pointCenterPaint = Paint()
-      ..strokeWidth = 7.0
-      ..style = PaintingStyle.fill
-      ..strokeCap = StrokeCap.round
-      ..color = Colors.white;
-
-    Path path = Path();
-    path.moveTo(0, size.height - ((size.height * priceList[0]) / highestPrice));
-    Offset offset = const Offset(0, 0);
-    for (int i = 1; i < priceList.length; i++) {
-      offset = Offset((size.width * i) / priceList.length, size.height - ((size.height * priceList[i]) / highestPrice));
-      path.lineTo(offset.dx, offset.dy);
-      canvas.drawPath(path, linePaint);
-    }
-    canvas.drawPoints(PointMode.points, [offset], pointPaint);
-    canvas.drawPoints(PointMode.points, [offset], pointCenterPaint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
   }
 }
