@@ -157,7 +157,7 @@ class _TempScreenState extends State<TempScreen> {
                     width: 340,
                     child: ParrotAlarmCell(
                       productImage: "https://picsum.photos/1029",
-                      title: "일론 머스크 집에서 직구! 전기 자동차 필수 충전기",
+                      title: "우리 집에서 직구! 따끈따끈한 내 방 산소",
                       content: "상품 설명이 나옴",
                       currentPrice: 3500,
                       averagePrice: 25000,
