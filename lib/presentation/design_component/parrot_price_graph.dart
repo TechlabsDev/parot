@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parot/extension/datetime_extension.dart';
 import 'package:parot/extension/int_extension.dart';
+import 'package:parot/presentation/design_component/parrot_chart_clipper.dart';
 import 'package:parot/presentation/design_component/parrot_chart_painter.dart';
 import 'package:parot/presentation/design_component/parrot_color.dart';
 
@@ -40,7 +41,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
               ),
               const SizedBox(height: 20),
               const Text(
-                "타이밍 BAD...",
+                "그래프 BAD...",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -48,7 +49,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                 ),
               ),
               const Text(
-                "평균가보다 훨씬 비싸요. 지금 사면 안돼요",
+                "아 그래프 왜 뜻대로 안 그려짐? ㅡㅡ",
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
@@ -58,6 +59,17 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
               const SizedBox(height: 20),
               Stack(
                 children: [
+                  ClipPath(
+                    clipper: ParrotChartClipper(
+                      color: ParrotColor.gray200,
+                      priceList: widget.priceList,
+                    ),
+                    child: Container(
+                      width: widget.graphSize == null ? 300 : widget.graphSize!.width,
+                      height: widget.graphSize == null ? 150 : widget.graphSize!.height,
+                      color: ParrotColor.red100,
+                    ),
+                  ),
                   CustomPaint(
                     size: widget.graphSize ?? const Size(300, 150),
                     foregroundPainter: ParrotChartPainter(
@@ -105,6 +117,8 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
             const SizedBox(height: 90),
             Text(
               highestPrice.toCommaFormat,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 11,
@@ -114,6 +128,8 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
             const SizedBox(height: 40),
             Text(
               averagePrice.toCommaFormat,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 11,
@@ -123,6 +139,8 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
             const SizedBox(height: 40),
             Text(
               lowestPrice.toCommaFormat,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 11,
