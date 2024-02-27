@@ -190,11 +190,28 @@ class _TempScreenState extends State<TempScreen> {
                     ),
                   ),
                   const Divider(height: 40),
-                  const SizedBox(
+                  SizedBox(
                     width: 350,
-                    height: 330,
+                    height: 300,
                     child: ParrotPriceGraph(
-                      priceList: [43000, 25000, 38200, 43200, 38500, 20000, 22000, 13000, 35000, 36000, 32000, 20000, 40000, 30000, 43000],
+                      startDate: DateTime.now().subtract(const Duration(days: 20)),
+                      priceList: const [
+                        43000,
+                        25000,
+                        38200,
+                        43200,
+                        38500,
+                        20000,
+                        22000,
+                        13000,
+                        35000,
+                        36000,
+                        32000,
+                        20000,
+                        40000,
+                        30000,
+                        43000
+                      ],
                     ),
                   ),
                   const SizedBox(height: 300),

@@ -4,6 +4,11 @@ extension DateTimeExtension on DateTime {
     return "${this.year}.${this.month.toString().padLeft(2, '0')}.${this.day.toString().padLeft(2, '0')}. ${this.hour.toString().padLeft(2, '0')}:${this.minute.toString().padLeft(2, '0')}";
   }
 
+  // "01.17",
+  String get MMDD {
+    return "${this.month.toString().padLeft(2, '0')}.${this.day.toString().padLeft(2, '0')}";
+  }
+
   //3시간 전, 방금 전, 1일 전...
   String get timeAgo {
     final now = DateTime.now();

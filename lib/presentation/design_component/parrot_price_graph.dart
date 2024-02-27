@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:parot/extension/datetime_extension.dart';
 import 'package:parot/extension/int_extension.dart';
 import 'package:parot/presentation/design_component/parrot_chart_painter.dart';
 import 'package:parot/presentation/design_component/parrot_color.dart';
 
 class ParrotPriceGraph extends StatefulWidget {
-  const ParrotPriceGraph({Key? key, required this.priceList}) : super(key: key);
+  const ParrotPriceGraph({Key? key, required this.priceList, required this.startDate, this.graphSize}) : super(key: key);
   final List<int> priceList;
+  final DateTime startDate;
+  final Size? graphSize;
 
   @override
   State<ParrotPriceGraph> createState() => _ParrotPriceGraphState();
@@ -53,12 +56,46 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                 ),
               ),
               const SizedBox(height: 20),
-              CustomPaint(
-                size: const Size(300, 200),
-                foregroundPainter: ParrotChartPainter(
-                  color: ParrotColor.red500,
-                  priceList: widget.priceList,
-                ),
+              Stack(
+                children: [
+                  CustomPaint(
+                    size: widget.graphSize ?? const Size(300, 150),
+                    foregroundPainter: ParrotChartPainter(
+                      color: ParrotColor.red500,
+                      priceList: widget.priceList,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 15,
+                    child: SizedBox(
+                      width: widget.graphSize == null ? 300 : widget.graphSize!.width,
+                      child: Row(
+                        children: [
+                          Text(
+                            widget.startDate.MMDD,
+                            style: const TextStyle(
+                              color: ParrotColor.gray400,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const Spacer(),
+                          const Text(
+                            "오늘",
+                            style: TextStyle(
+                              color: ParrotColor.gray400,
+                              fontSize: 11,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [],
               ),
             ],
           ),
@@ -67,25 +104,25 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
           children: [
             const SizedBox(height: 90),
             Text(
-              "${highestPrice.toCommaFormat}",
+              highestPrice.toCommaFormat,
               style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 11,
                 color: ParrotColor.red500,
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 40),
             Text(
-              "${averagePrice.toCommaFormat}",
+              averagePrice.toCommaFormat,
               style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 11,
                 color: ParrotColor.gray800,
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 40),
             Text(
-              "${lowestPrice.toCommaFormat}",
+              lowestPrice.toCommaFormat,
               style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 11,
