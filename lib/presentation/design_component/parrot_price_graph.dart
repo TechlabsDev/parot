@@ -49,7 +49,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                 ),
               ),
               const Text(
-                "아 그래프 왜 뜻대로 안 그려짐? ㅡㅡ",
+                "이해가 안 되네 대체 왜 그라디언트가 반대로 들어가는거임?",
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,

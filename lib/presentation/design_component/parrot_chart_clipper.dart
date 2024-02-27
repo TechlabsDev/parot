@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class ParrotChartClipper extends CustomClipper<Path> {
@@ -21,19 +19,14 @@ class ParrotChartClipper extends CustomClipper<Path> {
       x = (size.width * i) / priceList.length
     */
     Path path = Path();
-    path.moveTo(0, size.height - ((size.height * priceList[0]) / highestPrice));
+    path.moveTo(0, 0);
     Offset offset = const Offset(0, 0);
-    for (int i = 1; i < priceList.length; i++) {
+    for (int i = 0; i < priceList.length; i++) {
       offset = Offset((size.width * i) / priceList.length, size.height - ((size.height * priceList[i]) / highestPrice));
       path.lineTo(offset.dx, offset.dy);
     }
     path.close();
-    // return path;
-    final m = Matrix4.identity()
-      ..translate(size.width)
-      ..rotateY(pi);
-
-    return path.transform(m.storage);
+    return path;
   }
 
   @override
