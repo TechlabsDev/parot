@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/design_component/parrot_check_circle_in_row.dart';
@@ -161,7 +163,7 @@ class _TempScreenState extends State<TempScreen> {
                       content: "상품 설명이 나옴",
                       currentPrice: 3500,
                       averagePrice: 25000,
-                      dateTime: DateTime.now(),
+                      dateTime: DateTime.now().subtract(const Duration(minutes: 30)),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -173,7 +175,7 @@ class _TempScreenState extends State<TempScreen> {
                       content: "상품 설명이 나옴",
                       currentPrice: 500000,
                       averagePrice: 500000,
-                      dateTime: DateTime.now(),
+                      dateTime: DateTime.now().subtract(const Duration(hours: 3)),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -185,7 +187,15 @@ class _TempScreenState extends State<TempScreen> {
                       content: "안녕하세요. 닉네임은열글자까지야 님, 문의주신 상품은 현재 가격정보가 쌓이지 않았습니다",
                       currentPrice: -1,
                       averagePrice: -1,
-                      dateTime: DateTime.now(),
+                      dateTime: DateTime.now().subtract(const Duration(days: 1)),
+                    ),
+                  ),
+                  const Divider(height: 40),
+                  CustomPaint(
+                    size: const Size(380, 200),
+                    foregroundPainter: ChartPainter(
+                      color: ParrotColor.red500,
+                      priceList: [100, 250, 300, 400, 800, 600, 200, 300, 400, 100],
                     ),
                   ),
                   const SizedBox(height: 300),
@@ -200,5 +210,53 @@ class _TempScreenState extends State<TempScreen> {
         );
       },
     );
+  }
+}
+
+class ChartPainter extends CustomPainter {
+  final Color color;
+  final List<int> priceList;
+
+  ChartPainter({
+    required this.color,
+    required this.priceList,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    int highestPrice = priceList.reduce((value, element) => value > element ? value : element);
+    /*
+      size.height : highestPrice = p : price
+      p * highestPrice = size.height * price
+      p = (size.height * price) / highestPrice
+
+      size.width : priceList.length = x : i
+      x * priceList.length = size.width * i
+      x = (size.width * i) / priceList.length
+    */
+    Paint linePaint = Paint()
+      ..strokeWidth = 3.0
+      ..style = PaintingStyle.stroke
+      ..color = color;
+
+    Paint pointPaint = Paint()
+      ..strokeWidth = 6.0
+      ..style = PaintingStyle.fill
+      ..color = color;
+
+    Path path = Path();
+    path.moveTo(0, size.height);
+    Offset offset = const Offset(0, 0);
+    for (int i = 0; i < priceList.length; i++) {
+      offset = Offset((size.width * i) / priceList.length, size.height - ((size.height * priceList[i]) / highestPrice));
+      path.lineTo(offset.dx, offset.dy);
+      canvas.drawPath(path, linePaint);
+    }
+    canvas.drawPoints(PointMode.points, [offset], pointPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
