@@ -93,10 +93,17 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
               Builder(builder: (context) {
                 String comment = "";
 
-                ///대댓글에 닉네임이 있다면 볼드+빨강 표기
+                //대댓글에 닉네임이 있다면 볼드+빨강 표기
                 if (recommnetTargetNickWithAtMark.isNotEmpty) {
                   for (String element in recommnetTargetNickWithAtMark) {
-                    comment = widget.content.replaceAll(element, "<nick>$element</nick>");
+                    //이렇게 조건문을 분기하지 않으면 마지막 닉네임만 스타일이 변경된다
+                    if (comment.isEmpty) {
+                      //첫번쨰 닉네임 스타일 변경
+                      comment = widget.content.replaceAll(element, "<nick>$element</nick>");
+                    } else {
+                      //두번째 이후 닉네임 스타일 변경
+                      comment = comment.replaceAll(element, "<nick>$element</nick>");
+                    }
                   }
                 } else {
                   comment = widget.content;

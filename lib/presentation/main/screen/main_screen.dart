@@ -33,17 +33,15 @@ class _MainScreenState extends State<MainScreen> {
           return ParrotScaffold(
             appBar: ParrotHeader(
               title: headerTitleMap[controller.currentBottomNavIndex.value]!,
-              onNotiTap: () => Get.toNamed(ParrotPath.TEMP.SWITCH_TEMP_PATH),
+              onNotiTap: () {},
               onSearchTap: () => Get.toNamed(ParrotPath.TEMP.SEARCH_TEMP_PATH),
             ),
             body: Center(
               child: ParrotElevatedButton(
                 enabled: true,
-                leadingIcon: Image.asset("asset/icon/stroke_refresh.png", width: 16, height: 16, color: Colors.white),
-                trailingIcon: Image.asset("asset/icon/stroke_next.png", width: 16, height: 16, color: Colors.white),
-                onPressed: () => showPopup(content: "필터 적용하기 버튼 터치"),
+                onPressed: () => Get.toNamed(ParrotPath.TEMP.SWITCH_TEMP_PATH),
                 textColor: Colors.white,
-                text: "필터 적용하기",
+                text: "컴포넌트 보러가기",
               ),
             ),
             bottomNavigationBar: const BottomNav(),

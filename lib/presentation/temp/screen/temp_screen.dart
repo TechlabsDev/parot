@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:parot/extension/int_extension.dart';
 import 'package:parot/presentation/design_component/parrot_check_circle_in_row.dart';
 import 'package:parot/presentation/design_component/parrot_comment_input_field.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
-import 'package:parot/presentation/design_component/parrot_scaffold.dart';
 import 'package:parot/presentation/design_component/parrot_text_style.dart';
 import 'package:parot/presentation/temp/controller/temp_controller.dart';
+import 'package:styled_text/styled_text.dart';
 
 import '../../design_component/parrot_check_circle.dart';
 import '../../design_component/parrot_color.dart';
 import '../../design_component/parrot_comment_cell.dart';
+import '../../design_component/parrot_scaffold.dart';
 import '../../design_component/parrot_switch.dart';
 
 //아직 디자인이 다 나오지 않았을 때, 컴포넌트만 개발할 때 임시로 쓸 화면
@@ -37,6 +39,7 @@ class _TempScreenState extends State<TempScreen> {
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 20),
                   ParrotSwitch(
@@ -97,7 +100,7 @@ class _TempScreenState extends State<TempScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const Divider(height: 40),
                   SizedBox(
                     width: 380,
                     child: ParrotCommentCell(
@@ -113,7 +116,7 @@ class _TempScreenState extends State<TempScreen> {
                   SizedBox(
                     width: 380,
                     child: ParrotCommentCell(
-                      userImageUrl: "https://picsum.photos/1024",
+                      userImageUrl: "https://picsum.photos/1023",
                       userNickname: "도레미파솔라시도",
                       dateTime: DateTime.now(),
                       content: "@닉네임은열글자까지야" + " 대댓글 내용이 나옴 " * 8,
@@ -122,6 +125,62 @@ class _TempScreenState extends State<TempScreen> {
                       recommentTargetNicknameList: ["닉네임은열글자까지야"],
                       commentCount: 2098,
                       isRecomment: true,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 380,
+                    child: ParrotCommentCell(
+                      userImageUrl: "https://picsum.photos/1021",
+                      userNickname: "돼지고기먹고싶다",
+                      dateTime: DateTime.now(),
+                      content: "@도레미파솔라시도 @닉네임은열글자까지야" + " 대댓글 내용이 나옴 " * 8,
+                      likeCount: 1209,
+                      onRecommentTap: () {},
+                      recommentTargetNicknameList: ["도레미파솔라시도", "닉네임은열글자까지야"],
+                      commentCount: 2098,
+                      isRecomment: true,
+                    ),
+                  ),
+                  const Divider(height: 40),
+                  SizedBox(
+                    width: 380,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 64,
+                          width: 64,
+                          child: Card(
+                            elevation: 0,
+                            clipBehavior: Clip.hardEdge,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: const BorderSide(color: ParrotColor.gray50),
+                            ),
+                            child: Image.network("https://picsum.photos/1022"),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "닉네임은열글자까지야님, 고객센터 답변입니다",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            StyledText(text: "<pt>현재가</pt> <b>${42890.toCommaFormat}원</b>", tags: {
+                              "pt": StyledTextTag(
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: ParrotColor.gray600),
+                              ),
+                              "b": StyledTextTag(
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: ParrotColor.gray800),
+                              ),
+                            }),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],
