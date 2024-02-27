@@ -99,7 +99,7 @@ class _TempScreenState extends State<TempScreen> {
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
-                    width: 350,
+                    width: 380,
                     child: ParrotCommentCell(
                       userImageUrl: "https://picsum.photos/1024",
                       userNickname: "닉네임은열글자까지야",
@@ -111,14 +111,15 @@ class _TempScreenState extends State<TempScreen> {
                     ),
                   ),
                   SizedBox(
-                    width: 350,
+                    width: 380,
                     child: ParrotCommentCell(
                       userImageUrl: "https://picsum.photos/1024",
-                      userNickname: "닉네임은열글자까지야",
+                      userNickname: "도레미파솔라시도",
                       dateTime: DateTime.now(),
-                      content: "댓글 내용이 나옴 " * 8,
+                      content: "@닉네임은열글자까지야" + " 대댓글 내용이 나옴 " * 8,
                       likeCount: 1209,
                       onRecommentTap: () {},
+                      recommentTargetNicknameList: ["닉네임은열글자까지야"],
                       commentCount: 2098,
                       isRecomment: true,
                     ),

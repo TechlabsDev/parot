@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parot/extension/datetime_extension.dart';
 import 'package:parot/extension/int_extension.dart';
 import 'package:parot/presentation/design_component/parrot_color.dart';
+import 'package:styled_text/styled_text.dart';
 
 class ParrotCommentCell extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class ParrotCommentCell extends StatefulWidget {
     required this.commentCount,
     this.onRecommentTap,
     this.isRecomment = false,
+    this.recommentTargetNicknameList,
   });
 
   final Function? onRecommentTap;
@@ -26,12 +28,16 @@ class ParrotCommentCell extends StatefulWidget {
   final int likeCount;
   final int commentCount;
   final bool isRecomment;
+  final List<String>? recommentTargetNicknameList;
 }
 
 class _ParrotCommentCellState extends State<ParrotCommentCell> {
   @override
   Widget build(BuildContext context) {
-    // return Container();
+    List<String> recommnetTargetNickWithAtMark = [];
+    if (widget.recommentTargetNicknameList != null) {
+      recommnetTargetNickWithAtMark = widget.recommentTargetNicknameList!.map((e) => "@$e").toList();
+    }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -62,7 +68,7 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
                         ),
                       ),
                       Text(
-                        widget.dateTime.commentCellDate,
+                        widget.dateTime.YYYYMMDDhhmmWithColon,
                         style: const TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w400,
@@ -84,17 +90,37 @@ class _ParrotCommentCellState extends State<ParrotCommentCell> {
                 ],
               ),
               const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: Text(
-                  widget.content,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: ParrotColor.gray600,
+              Builder(builder: (context) {
+                String comment = "";
+
+                ///대댓글에 닉네임이 있다면 볼드+빨강 표기
+                if (recommnetTargetNickWithAtMark.isNotEmpty) {
+                  for (String element in recommnetTargetNickWithAtMark) {
+                    comment = widget.content.replaceAll(element, "<nick>$element</nick>");
+                  }
+                } else {
+                  comment = widget.content;
+                }
+                return Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: StyledText(
+                    text: comment,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: ParrotColor.gray600,
+                    ),
+                    tags: {
+                      'nick': StyledTextTag(
+                        style: const TextStyle(
+                          color: ParrotColor.red500,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    },
                   ),
-                ),
-              ),
+                );
+              }),
               const SizedBox(height: 8),
               Row(
                 children: [
