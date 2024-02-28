@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:parot/extension/datetime_extension.dart';
@@ -103,6 +105,12 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                         int index = points.indexWhere((element) => element.dx == selectedPoint!.dx && element.dy == selectedPoint!.dy);
                         print("${widget.priceList[index]}");
                       });
+                      Timer.periodic(const Duration(seconds: 1), (timer) {
+                        setState(() {
+                          selectedPoint = null;
+                          timer.cancel();
+                        });
+                      });
                     },
                     child: Stack(
                       clipBehavior: Clip.none,
@@ -129,6 +137,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                           foregroundPainter: ParrotChartPainter(
                             color: ParrotColor.red500,
                             priceList: widget.priceList,
+                            selectedOffset: selectedPoint,
                           ),
                         ),
                         Positioned(
@@ -195,7 +204,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                           ),
                         ),
                         Positioned(
-                          top: 110,
+                          top: 107,
                           child: SizedBox(
                             width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
                             child: DottedLine(
@@ -242,7 +251,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                     color: ParrotColor.gray800,
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 35),
                 Text(
                   lowestPrice.toCommaFormat,
                   maxLines: 1,
