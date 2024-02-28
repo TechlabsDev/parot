@@ -17,6 +17,8 @@ class ParrotPriceGraph extends StatefulWidget {
 }
 
 class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
+  Offset? selectedPoint;
+  List<Offset> points = [];
   @override
   Widget build(BuildContext context) {
     int totalPrice = widget.priceList.reduce((value, element) => value + element);
@@ -81,115 +83,137 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      ClipPath(
-                        clipper: ParrotChartClipper(
-                          color: ParrotColor.gray200,
-                          priceList: widget.priceList,
-                        ),
-                        child: Container(
-                          width: widget.graphSize == null ? 300 : widget.graphSize!.width,
-                          height: widget.graphSize == null ? 150 : widget.graphSize!.height,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: expensiveColorList,
+                  GestureDetector(
+                    onTapUp: (TapUpDetails details) {
+                      // 사용자가 터치한 위치를 기반으로 가장 가까운 정점 찾기
+                      final touchPosition = details.localPosition;
+                      const touchRadius = 50.0; // 터치 인식 범위
+
+                      final closestPoint = points.fold<Offset?>(null, (closest, point) {
+                        final distance = (point - touchPosition).distance;
+                        if (distance < touchRadius && (closest == null || distance < (closest - touchPosition).distance)) {
+                          return point;
+                        }
+                        return closest;
+                      });
+
+                      setState(() {
+                        selectedPoint = closestPoint;
+                        print("touch....(${selectedPoint!.dx}, ${selectedPoint!.dy})");
+                        int index = points.indexWhere((element) => element.dx == selectedPoint!.dx && element.dy == selectedPoint!.dy);
+                        print("${widget.priceList[index]}");
+                      });
+                    },
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        ClipPath(
+                          clipper: ParrotChartClipper(
+                            color: ParrotColor.gray200,
+                            priceList: widget.priceList,
+                          ),
+                          child: Container(
+                            width: widget.graphSize == null ? 300 : widget.graphSize!.width,
+                            height: widget.graphSize == null ? 150 : widget.graphSize!.height,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: expensiveColorList,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      CustomPaint(
-                        size: widget.graphSize ?? const Size(300, 150),
-                        foregroundPainter: ParrotChartPainter(
-                          color: ParrotColor.red500,
-                          priceList: widget.priceList,
+                        CustomPaint(
+                          size: widget.graphSize ?? const Size(300, 150),
+                          foregroundPainter: ParrotChartPainter(
+                            color: ParrotColor.red500,
+                            priceList: widget.priceList,
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 15,
-                        child: SizedBox(
-                          width: widget.graphSize == null ? 300 : widget.graphSize!.width,
-                          child: Row(
-                            children: [
-                              Text(
-                                widget.startDate.MMDD,
-                                style: const TextStyle(
-                                  color: ParrotColor.gray400,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
+                        Positioned(
+                          bottom: 15,
+                          child: SizedBox(
+                            width: widget.graphSize == null ? 300 : widget.graphSize!.width,
+                            child: Row(
+                              children: [
+                                Text(
+                                  widget.startDate.MMDD,
+                                  style: const TextStyle(
+                                    color: ParrotColor.gray400,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                              const Spacer(),
-                              const Text(
-                                "오늘",
-                                style: TextStyle(
-                                  color: ParrotColor.gray400,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w500,
+                                const Spacer(),
+                                const Text(
+                                  "오늘",
+                                  style: TextStyle(
+                                    color: ParrotColor.gray400,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: -2,
-                        child: SizedBox(
-                          width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
-                          child: const DottedLine(
-                            direction: Axis.horizontal,
-                            alignment: WrapAlignment.center,
-                            lineLength: double.infinity,
-                            lineThickness: 1.0,
-                            dashLength: 4.0,
-                            dashColor: ParrotColor.red500,
-                            dashRadius: 0.0,
-                            dashGapLength: 4.0,
-                            dashGapColor: Colors.transparent,
-                            dashGapRadius: 0.0,
+                        Positioned(
+                          top: -2,
+                          child: SizedBox(
+                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                            child: DottedLine(
+                              direction: Axis.horizontal,
+                              alignment: WrapAlignment.center,
+                              lineLength: double.infinity,
+                              lineThickness: 1.0,
+                              dashLength: 4.0,
+                              dashColor: ParrotColor.red500.withOpacity(.5),
+                              dashRadius: 0.0,
+                              dashGapLength: 4.0,
+                              dashGapColor: Colors.transparent,
+                              dashGapRadius: 0.0,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: 55,
-                        child: SizedBox(
-                          width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
-                          child: const DottedLine(
-                            direction: Axis.horizontal,
-                            alignment: WrapAlignment.center,
-                            lineLength: double.infinity,
-                            lineThickness: 1.0,
-                            dashLength: 4.0,
-                            dashColor: ParrotColor.gray500,
-                            dashRadius: 0.0,
-                            dashGapLength: 4.0,
-                            dashGapColor: Colors.transparent,
-                            dashGapRadius: 0.0,
+                        Positioned(
+                          top: 55,
+                          child: SizedBox(
+                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                            child: DottedLine(
+                              direction: Axis.horizontal,
+                              alignment: WrapAlignment.center,
+                              lineLength: double.infinity,
+                              lineThickness: 1.0,
+                              dashLength: 4.0,
+                              dashColor: ParrotColor.gray500.withOpacity(.5),
+                              dashRadius: 0.0,
+                              dashGapLength: 4.0,
+                              dashGapColor: Colors.transparent,
+                              dashGapRadius: 0.0,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: 110,
-                        child: SizedBox(
-                          width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
-                          child: const DottedLine(
-                            direction: Axis.horizontal,
-                            alignment: WrapAlignment.center,
-                            lineLength: double.infinity,
-                            lineThickness: 1.0,
-                            dashLength: 4.0,
-                            dashColor: ParrotColor.blue500,
-                            dashRadius: 0.0,
-                            dashGapLength: 4.0,
-                            dashGapColor: Colors.transparent,
-                            dashGapRadius: 0.0,
+                        Positioned(
+                          top: 110,
+                          child: SizedBox(
+                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                            child: DottedLine(
+                              direction: Axis.horizontal,
+                              alignment: WrapAlignment.center,
+                              lineLength: double.infinity,
+                              lineThickness: 1.0,
+                              dashLength: 4.0,
+                              dashColor: ParrotColor.blue500.withOpacity(.5),
+                              dashRadius: 0.0,
+                              dashGapLength: 4.0,
+                              dashGapColor: Colors.transparent,
+                              dashGapRadius: 0.0,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -235,5 +259,18 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
         ),
       ],
     );
+  }
+
+  @override
+  void initState() {
+    Size size = widget.graphSize ?? const Size(300, 150);
+    int highestPrice = widget.priceList.reduce((value, element) => value > element ? value : element);
+
+    for (int i = 0; i < widget.priceList.length; i++) {
+      Offset offset =
+          Offset((size.width * i) / widget.priceList.length, size.height - ((size.height * widget.priceList[i]) / highestPrice));
+      points.add(offset);
+    }
+    super.initState();
   }
 }
