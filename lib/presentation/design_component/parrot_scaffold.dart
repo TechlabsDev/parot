@@ -19,7 +19,7 @@ class ParrotScaffold extends StatefulWidget {
     this.onEndDrawerChanged,
     this.bottomNavigationBar,
     this.bottomSheet,
-    this.backgroundColor,
+    this.backgroundColor = Colors.white,
     this.resizeToAvoidBottomInset,
     this.primary = true,
     this.drawerDragStartBehavior = DragStartBehavior.start,

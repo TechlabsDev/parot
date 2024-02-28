@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:parot/extension/datetime_extension.dart';
 import 'package:parot/extension/int_extension.dart';
@@ -22,6 +23,9 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
     int averagePrice = totalPrice ~/ widget.priceList.length;
     int highestPrice = widget.priceList.reduce((value, element) => value > element ? value : element);
     int lowestPrice = widget.priceList.reduce((value, element) => value < element ? value : element);
+
+    List<Color> expensiveColorList = [ParrotColor.red100, ParrotColor.red50, Colors.white];
+    List<Color> cheapColorList = [ParrotColor.blue100, ParrotColor.blue50, Colors.white];
 
     return Column(
       children: [
@@ -78,6 +82,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                 children: [
                   const SizedBox(height: 20),
                   Stack(
+                    clipBehavior: Clip.none,
                     children: [
                       ClipPath(
                         clipper: ParrotChartClipper(
@@ -87,7 +92,13 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                         child: Container(
                           width: widget.graphSize == null ? 300 : widget.graphSize!.width,
                           height: widget.graphSize == null ? 150 : widget.graphSize!.height,
-                          color: ParrotColor.red50,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: expensiveColorList,
+                            ),
+                          ),
                         ),
                       ),
                       CustomPaint(
@@ -121,6 +132,60 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: -2,
+                        child: SizedBox(
+                          width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                          child: const DottedLine(
+                            direction: Axis.horizontal,
+                            alignment: WrapAlignment.center,
+                            lineLength: double.infinity,
+                            lineThickness: 1.0,
+                            dashLength: 4.0,
+                            dashColor: ParrotColor.red500,
+                            dashRadius: 0.0,
+                            dashGapLength: 4.0,
+                            dashGapColor: Colors.transparent,
+                            dashGapRadius: 0.0,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 55,
+                        child: SizedBox(
+                          width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                          child: const DottedLine(
+                            direction: Axis.horizontal,
+                            alignment: WrapAlignment.center,
+                            lineLength: double.infinity,
+                            lineThickness: 1.0,
+                            dashLength: 4.0,
+                            dashColor: ParrotColor.gray500,
+                            dashRadius: 0.0,
+                            dashGapLength: 4.0,
+                            dashGapColor: Colors.transparent,
+                            dashGapRadius: 0.0,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 110,
+                        child: SizedBox(
+                          width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                          child: const DottedLine(
+                            direction: Axis.horizontal,
+                            alignment: WrapAlignment.center,
+                            lineLength: double.infinity,
+                            lineThickness: 1.0,
+                            dashLength: 4.0,
+                            dashColor: ParrotColor.blue500,
+                            dashRadius: 0.0,
+                            dashGapLength: 4.0,
+                            dashGapColor: Colors.transparent,
+                            dashGapRadius: 0.0,
                           ),
                         ),
                       ),

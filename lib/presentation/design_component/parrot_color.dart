@@ -27,9 +27,12 @@ class ParrotColor {
 
   /*blue*/
   static const Color blue500 = Color(0xFF2553F8);
+  static const Color blue100 = Color(0xFFE9EEFE);
+  static const Color blue50 = Color(0xFFF4F6FF);
 
   /*green*/
   static const Color green500 = Color(0xFF4BD984);
+  static const Color green50 = Color(0xFFF6FDF9);
 
   /*yellow*/
   static const Color yellow500 = Color(0xFFFFCF52);
