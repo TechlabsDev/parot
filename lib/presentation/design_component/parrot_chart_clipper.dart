@@ -9,19 +9,10 @@ class ParrotChartClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     int highestPrice = priceList.reduce((value, element) => value > element ? value : element);
-    /*
-      size.height : highestPrice = p : price
-      p * highestPrice = size.height * price
-      p = (size.height * price) / highestPrice
-
-      size.width : priceList.length = x : i
-      x * priceList.length = size.width * i
-      x = (size.width * i) / priceList.length
-    */
     Path path = Path();
-    path.lineTo(0, size.height);
-    path.lineTo((size.width * priceList.length) / priceList.length, size.height);
-    path.lineTo((size.width * priceList.length), 0);
+    path.lineTo(0, size.height - 35);
+    path.lineTo(size.width - 15, size.height - 35);
+    path.lineTo(size.width - 15, 0);
 
     Offset offset = const Offset(0, 0);
     for (int i = priceList.length - 1; i > 0; i--) {
