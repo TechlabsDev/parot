@@ -22,6 +22,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
     int averagePrice = totalPrice ~/ widget.priceList.length;
     int highestPrice = widget.priceList.reduce((value, element) => value > element ? value : element);
     int lowestPrice = widget.priceList.reduce((value, element) => value < element ? value : element);
+
     return Row(
       children: [
         Expanded(

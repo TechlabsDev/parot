@@ -14,24 +14,20 @@ class ParrotChartPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     int highestPrice = priceList.reduce((value, element) => value > element ? value : element);
-    /*
-      size.height : highestPrice = p : price
-      p * highestPrice = size.height * price
-      p = (size.height * price) / highestPrice
-
-      size.width : priceList.length = x : i
-      x * priceList.length = size.width * i
-      x = (size.width * i) / priceList.length
-    */
     Paint linePaint = Paint()
       ..strokeWidth = 3.0
       ..style = PaintingStyle.stroke
       ..color = color;
+    Paint fillPaint = Paint()
+      ..strokeWidth = 3.0
+      ..style = PaintingStyle.stroke
+      ..color = color.withOpacity(.5);
 
     Paint pointPaint = Paint()
       ..strokeWidth = 12.0
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
+      ..style = PaintingStyle.fill
       ..color = color;
 
     Paint pointCenterPaint = Paint()
@@ -41,6 +37,8 @@ class ParrotChartPainter extends CustomPainter {
       ..color = Colors.white;
 
     Path path = Path();
+    Path fillPath = Path();
+    fillPath.lineTo(0, size.height);
     path.moveTo(0, size.height - ((size.height * priceList[0]) / highestPrice));
     Offset offset = const Offset(0, 0);
     for (int i = 1; i < priceList.length; i++) {
