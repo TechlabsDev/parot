@@ -9,9 +9,9 @@ import 'package:parot/presentation/design_component/parrot_chart_painter.dart';
 import 'package:parot/presentation/design_component/parrot_color.dart';
 
 class ParrotPriceGraph extends StatefulWidget {
-  const ParrotPriceGraph({Key? key, required this.priceList, required this.startDate, this.graphSize}) : super(key: key);
+  const ParrotPriceGraph({Key? key, required this.priceList, required this.dateList, this.graphSize}) : super(key: key);
   final List<int> priceList;
-  final DateTime startDate;
+  final List<DateTime> dateList;
   final Size? graphSize;
 
   @override
@@ -21,6 +21,14 @@ class ParrotPriceGraph extends StatefulWidget {
 class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
   Offset? selectedPoint;
   List<Offset> points = [];
+
+  @override
+  void setState(VoidCallback fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     int totalPrice = widget.priceList.reduce((value, element) => value + element);
@@ -28,7 +36,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
     int highestPrice = widget.priceList.reduce((value, element) => value > element ? value : element);
     int lowestPrice = widget.priceList.reduce((value, element) => value < element ? value : element);
 
-    List<Color> expensiveColorList = [ParrotColor.red100, ParrotColor.red50, Colors.white];
+    List<Color> expensiveColorList = [ParrotColor.red100, ParrotColor.red100, ParrotColor.red50, Colors.white];
     List<Color> cheapColorList = [ParrotColor.blue100, ParrotColor.blue50, Colors.white];
 
     return Column(
@@ -88,22 +96,8 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                   GestureDetector(
                     onTapUp: (TapUpDetails details) {
                       // 사용자가 터치한 위치를 기반으로 가장 가까운 정점 찾기
-                      final touchPosition = details.localPosition;
-                      const touchRadius = 50.0; // 터치 인식 범위
-
-                      final closestPoint = points.fold<Offset?>(null, (closest, point) {
-                        final distance = (point - touchPosition).distance;
-                        if (distance < touchRadius && (closest == null || distance < (closest - touchPosition).distance)) {
-                          return point;
-                        }
-                        return closest;
-                      });
-
                       setState(() {
-                        selectedPoint = closestPoint;
-                        print("touch....(${selectedPoint!.dx}, ${selectedPoint!.dy})");
-                        int index = points.indexWhere((element) => element.dx == selectedPoint!.dx && element.dy == selectedPoint!.dy);
-                        print("${widget.priceList[index]}");
+                        selectedPoint = details.localPosition;
                       });
                       Timer.periodic(const Duration(seconds: 1), (timer) {
                         setState(() {
@@ -122,7 +116,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                           ),
                           child: Container(
                             width: widget.graphSize == null ? 300 : widget.graphSize!.width,
-                            height: widget.graphSize == null ? 150 : widget.graphSize!.height,
+                            height: widget.graphSize == null ? 100 : widget.graphSize!.height,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 begin: Alignment.topCenter,
@@ -133,7 +127,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                           ),
                         ),
                         CustomPaint(
-                          size: widget.graphSize ?? const Size(300, 150),
+                          size: widget.graphSize ?? const Size(300, 100),
                           foregroundPainter: ParrotChartPainter(
                             color: ParrotColor.red500,
                             priceList: widget.priceList,
@@ -141,13 +135,13 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                           ),
                         ),
                         Positioned(
-                          bottom: 15,
+                          bottom: -30,
                           child: SizedBox(
                             width: widget.graphSize == null ? 300 : widget.graphSize!.width,
                             child: Row(
                               children: [
                                 Text(
-                                  widget.startDate.MMDD,
+                                  widget.dateList.first.MMDD,
                                   style: const TextStyle(
                                     color: ParrotColor.gray400,
                                     fontSize: 11,
@@ -272,6 +266,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
 
   @override
   void initState() {
+    super.initState();
     Size size = widget.graphSize ?? const Size(300, 150);
     int highestPrice = widget.priceList.reduce((value, element) => value > element ? value : element);
 
@@ -280,6 +275,5 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
           Offset((size.width * i) / widget.priceList.length, size.height - ((size.height * widget.priceList[i]) / highestPrice));
       points.add(offset);
     }
-    super.initState();
   }
 }

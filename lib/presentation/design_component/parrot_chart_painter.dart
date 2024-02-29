@@ -60,20 +60,46 @@ class ParrotChartPainter extends CustomPainter {
   }
 
   void _drawLabel(Canvas canvas, Offset point) {
-    int index = offsetList.indexWhere((element) => element.dx == point!.dx && element.dy == point!.dy);
+    try {
+      Offset closestPoint = offsetList.first;
 
-    final textSpan = TextSpan(style: const TextStyle(color: Colors.black), text: '${priceList[index].toCommaFormat}원');
-    final textPainter = TextPainter(text: textSpan, textDirection: TextDirection.ltr);
-    textPainter.layout();
+      offsetList.forEach((element) {
+        double oldDistance = (closestPoint - point).distance;
+        double newDistance = (element - point).distance;
+        if (newDistance < oldDistance) {
+          closestPoint = element;
+        }
+      });
+      int index = offsetList.indexOf(closestPoint!);
+      if (index != -1) {
+        canvas.drawCircle(closestPoint, 5, Paint()..color = color);
 
-    // 라벨의 배경을 그립니다.
-    final backgroundPaint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.fill;
-    final backgroundRect = Rect.fromLTWH(point.dx + 10, point.dy - 10, textPainter.width + 10, textPainter.height + 5);
-    canvas.drawRect(backgroundRect, backgroundPaint);
+        final textSpan = TextSpan(style: const TextStyle(color: Colors.black), text: '${priceList[index].toCommaFormat}원');
+        final textPainter = TextPainter(text: textSpan, textDirection: TextDirection.ltr);
+        textPainter.layout();
 
-    // 라벨의 텍스트를 그립니다.
-    textPainter.paint(canvas, point + const Offset(15, -5));
+        final backgroundPaint = Paint()
+          ..color = Colors.white
+          ..style = PaintingStyle.fill;
+        final backgroundRect = Rect.fromLTWH(point.dx, point.dy, textPainter.width + 10, textPainter.height);
+        canvas.drawRect(backgroundRect, backgroundPaint);
+
+        textPainter.paint(canvas, point);
+      } else {
+        print("target - (${point.dx}, ${point.dy})");
+        print("closest - (${closestPoint.dx}, ${closestPoint.dy})");
+        offsetList.forEach((element) {
+          print("(${element.dx}, ${element.dy})");
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+      print("target - (${point.dx}, ${point.dy})");
+      offsetList.forEach((element) {
+        print("(${element.dx}, ${element.dy})");
+      });
+
+      return;
+    }
   }
 }
