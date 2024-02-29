@@ -99,7 +99,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                       setState(() {
                         selectedPoint = details.localPosition;
                       });
-                      Timer.periodic(const Duration(seconds: 1), (timer) {
+                      Timer.periodic(const Duration(seconds: 2), (timer) {
                         setState(() {
                           selectedPoint = null;
                           timer.cancel();
@@ -164,7 +164,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                         Positioned(
                           top: -2,
                           child: SizedBox(
-                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 40,
                             child: DottedLine(
                               direction: Axis.horizontal,
                               alignment: WrapAlignment.center,
@@ -182,7 +182,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                         Positioned(
                           top: 55,
                           child: SizedBox(
-                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 40,
                             child: DottedLine(
                               direction: Axis.horizontal,
                               alignment: WrapAlignment.center,
@@ -200,7 +200,7 @@ class _ParrotPriceGraphState extends State<ParrotPriceGraph> {
                         Positioned(
                           top: 107,
                           child: SizedBox(
-                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 10,
+                            width: widget.graphSize == null ? 290 : widget.graphSize!.width - 40,
                             child: DottedLine(
                               direction: Axis.horizontal,
                               alignment: WrapAlignment.center,

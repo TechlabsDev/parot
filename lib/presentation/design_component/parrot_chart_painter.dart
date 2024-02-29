@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:parot/extension/int_extension.dart';
+import 'package:parot/presentation/design_component/parrot_color.dart';
 
 class ParrotChartPainter extends CustomPainter {
   final Color color;
@@ -37,9 +38,8 @@ class ParrotChartPainter extends CustomPainter {
       ..color = Colors.white;
 
     Path path = Path();
-    Path fillPath = Path();
-    fillPath.lineTo(0, size.height);
     path.moveTo(0, size.height - ((size.height * priceList[0]) / highestPrice));
+
     Offset offset = const Offset(0, 0);
     for (int i = 0; i < priceList.length; i++) {
       offset = Offset((size.width * i) / priceList.length, size.height - ((size.height * priceList[i]) / highestPrice));
@@ -50,7 +50,7 @@ class ParrotChartPainter extends CustomPainter {
     canvas.drawPoints(ui.PointMode.points, [offset], pointPaint);
     canvas.drawPoints(ui.PointMode.points, [offset], pointCenterPaint);
     if (selectedOffset != null) {
-      _drawLabel(canvas, selectedOffset!);
+      _drawLabel(canvas, selectedOffset!, size);
     }
   }
 
@@ -59,7 +59,7 @@ class ParrotChartPainter extends CustomPainter {
     return true;
   }
 
-  void _drawLabel(Canvas canvas, Offset point) {
+  void _drawLabel(Canvas canvas, Offset point, Size size) {
     try {
       Offset closestPoint = offsetList.first;
 
@@ -70,6 +70,14 @@ class ParrotChartPainter extends CustomPainter {
           closestPoint = element;
         }
       });
+      Path detailLinePath = Path();
+      detailLinePath.moveTo(closestPoint.dx, 0);
+      detailLinePath.lineTo(closestPoint.dx, size.height);
+      Paint detailLinePaint = Paint()
+        ..strokeWidth = 1.5
+        ..style = PaintingStyle.stroke
+        ..color = ParrotColor.gray200;
+      canvas.drawPath(detailLinePath, detailLinePaint);
       int index = offsetList.indexOf(closestPoint!);
       if (index != -1) {
         canvas.drawCircle(closestPoint, 5, Paint()..color = color);
@@ -81,10 +89,10 @@ class ParrotChartPainter extends CustomPainter {
         final backgroundPaint = Paint()
           ..color = Colors.white
           ..style = PaintingStyle.fill;
-        final backgroundRect = Rect.fromLTWH(point.dx, point.dy, textPainter.width + 10, textPainter.height);
+        final backgroundRect = Rect.fromLTWH(point.dx - 10, 0, textPainter.width + 10, textPainter.height);
         canvas.drawRect(backgroundRect, backgroundPaint);
 
-        textPainter.paint(canvas, point);
+        textPainter.paint(canvas, Offset(point.dx - 10, 0));
       } else {
         print("target - (${point.dx}, ${point.dy})");
         print("closest - (${closestPoint.dx}, ${closestPoint.dy})");
