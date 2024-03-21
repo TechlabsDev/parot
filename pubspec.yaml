@@ -54,6 +54,7 @@ dependencies:
   awesome_style_field: ^0.0.5
   styled_text: ^8.1.0
   dotted_line: ^3.2.2
+  multiple_result: ^5.1.0
 
 dev_dependencies:
   flutter_test:

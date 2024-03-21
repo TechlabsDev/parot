@@ -13,6 +13,7 @@ class ParrotCommentInputField extends StatefulWidget {
   List<String>? commentTargetList;
 
   ParrotCommentInputField({
+    super.key,
     this.hintText,
     this.hintStyle,
     this.onChanged,
@@ -39,15 +40,7 @@ class _ParrotCommentInputFieldState extends State<ParrotCommentInputField> {
   @override
   Widget build(BuildContext context) {
     commentTargets = widget.commentTargetList
-            ?.map(
-              (e) => AwesomeKeyword(
-                text: "@$e",
-                style: const TextStyle(
-                  color: ParrotColor.red500,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            )
+            ?.map((e) => AwesomeKeyword(text: "@$e", style: const TextStyle(color: ParrotColor.red500, fontWeight: FontWeight.w500)))
             .toList() ??
         [];
     return Container(

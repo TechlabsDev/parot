@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/design_component/parrot_check_circle_in_row.dart';
@@ -194,11 +192,13 @@ class _TempScreenState extends State<TempScreen> {
                   const Divider(height: 40),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: ParrotPriceGraph(
-                      graphSize: const Size(350, 100),
-                      dateList: List.generate(15, (index) => DateTime.now().subtract(Duration(days: index))),
-                      priceList: List.generate(15, (index) => Random().nextInt(5000000)),
-                    ),
+                    child: GetX<TempController>(builder: (controller) {
+                      return ParrotPriceGraph(
+                        graphSize: const Size(350, 100),
+                        dateList: controller.dateList,
+                        priceList: controller.priceList,
+                      );
+                    }),
                   ),
                   const SizedBox(height: 300),
                 ],
