@@ -9,7 +9,7 @@ class ParrotScaffold extends StatefulWidget {
     Key? key,
     this.appBar,
     this.body,
-    this.horizontal16Padding = false,
+    this.horizontal16Padding = true,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.floatingActionButtonAnimator,
