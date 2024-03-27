@@ -17,21 +17,34 @@ class _SocialSignInListState extends State<SocialSignInList> {
     return GetBuilder<IntroController>(
         init: Get.put(IntroController()),
         builder: (controller) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: SignInType.values
-                .where((element) => element.engName.isNotEmpty) //SignInType.none을 제외
-                .map(
-                  (value) => InkWell(
-                    onTap: () => controller.signIn(value),
-                    child: Image.asset(
-                      "asset/social_login/${value.engName}_round.png",
-                      width: 60,
-                      height: 60,
-                    ),
-                  ),
-                )
-                .toList(),
+          return Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: SignInType.values
+                    .where((element) => element.engName.isNotEmpty) //SignInType.none을 제외
+                    .map(
+                      (value) => InkWell(
+                        onTap: () => controller.signIn(value),
+                        child: Image.asset(
+                          "asset/social_login/${value.engName}_round.png",
+                          width: 60,
+                          height: 60,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+              Positioned(
+                top: 65,
+                left: controller.getLastSignInBalloonPosition(),
+                child: Image.asset(
+                  "asset/social_login/last_sign_in_balloon_${controller.lastSignInType.value == SignInType.naver ? "left" : controller.lastSignInType.value == SignInType.apple ? "right" : "center"}.png",
+                  width: 145,
+                ),
+              ),
+            ],
           );
         });
   }

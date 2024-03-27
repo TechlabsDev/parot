@@ -46,10 +46,6 @@ class _IntroScreenState extends State<IntroScreen> {
                 padding: EdgeInsets.only(left: 8), //parrot_scaffold가 가진 좌측 기본 패딩 16에 8을 더해서 24를 만든다.
                 child: SocialSignInList(),
               ),
-              Image.asset(
-                "asset/social_login/last_sign_in_balloon_center.png",
-                width: 145,
-              ),
               SizedBox(height: 80.h),
               const Center(
                 child: SignInErrorButton(),
