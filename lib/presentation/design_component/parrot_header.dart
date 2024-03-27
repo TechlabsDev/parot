@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:parot/presentation/design_component/parrot_text_style.dart';
 
 class ParrotHeader extends AppBar {
-  ParrotHeader({super.key, required Widget title, List<Widget>? actions, VoidCallback? onSearchTap, VoidCallback? onNotiTap})
+  ParrotHeader({super.key, Widget? titleWidget, String? title, List<Widget>? actions, VoidCallback? onSearchTap, VoidCallback? onNotiTap})
       : super(
-          title: title,
+          title: title != null ? Text(title, style: parrotHeaderStyle) : titleWidget ?? const SizedBox.shrink(),
           actions: actions ??
               [
                 IconButton(onPressed: onSearchTap, icon: Image.asset("asset/icon/stroke_search.png", height: 24, width: 24)),
