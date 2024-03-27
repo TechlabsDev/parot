@@ -4,6 +4,7 @@ import 'package:parot/const/route/path_base.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
 import 'package:parot/presentation/design_component/parrot_scaffold.dart';
 import 'package:parot/presentation/sign_up/controller/sign_up_controller.dart';
+import 'package:parot/presentation/sign_up/widget/sign_up_bottom_button.dart';
 import 'package:parot/presentation/sign_up/widget/sign_up_category_page.dart';
 import 'package:parot/presentation/sign_up/widget/sign_up_term_agree_page.dart';
 
@@ -29,7 +30,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       builder: (controller) {
         return GestureDetector(
           onHorizontalDragUpdate: (details) {
-            print(details.delta.dx);
             if (details.delta.dx > 50) {
               if (controller.step.value == SignUpStep.term) {
                 Get.offAllNamed(ParrotPath.INTRO);
@@ -38,30 +38,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
           },
           child: ParrotScaffold(
             horizontal16Padding: false,
+            bottomSheet: const SignUpBottomButton(),
             appBar: ParrotDepthHeader(
               title: "회원가입",
               actions: [],
               onBackTap: controller.onBack,
               needHeaderBottomBorder: true,
             ),
-            // body: controller.step.value == SignUpStep.term ? SignUpTermAgreePage() : Container(),
-            body: PageView(
-              controller: controller.pageController,
-              physics: controller.step.value == SignUpStep.term ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
-              onPageChanged: (index) {
-                if (index == 0) {
-                  controller.step.value = SignUpStep.term;
-                }
-                if (index == 1) {
-                  controller.step.value = SignUpStep.selectCategory;
-                }
-                if (index == 2) {
-                  controller.step.value = SignUpStep.finish;
-                }
-              },
+            body: Column(
               children: [
-                const SignUpTermAgreePage(),
-                const SignUpCategoryPage(),
+                Expanded(
+                  child: PageView(
+                    controller: controller.pageController,
+                    physics:
+                        controller.step.value == SignUpStep.term ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+                    onPageChanged: (index) {
+                      if (index == 0) {
+                        controller.step.value = SignUpStep.term;
+                      }
+                      if (index == 1) {
+                        controller.step.value = SignUpStep.selectCategory;
+                      }
+                      if (index == 2) {
+                        controller.step.value = SignUpStep.finish;
+                      }
+                    },
+                    children: const [
+                      SignUpTermAgreePage(),
+                      SignUpCategoryPage(),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 80),
               ],
             ),
           ),

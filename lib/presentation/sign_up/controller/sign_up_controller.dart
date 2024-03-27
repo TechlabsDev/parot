@@ -58,14 +58,18 @@ class SignUpController extends GetxController {
 
   void onBack() {
     if (step.value == SignUpStep.term) {
-      print("go back");
       Get.offAllNamed(ParrotPath.INTRO);
       return;
     }
-    if (step.value == SignUpStep.finish) {
-      print("go to term");
+
+    if (step.value == SignUpStep.selectCategory) {
       step.value = SignUpStep.term;
       pageController.animateToPage(0, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
+      return;
+    }
+    if (step.value == SignUpStep.finish) {
+      step.value = SignUpStep.term;
+      pageController.animateToPage(1, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
       return;
     }
   }
