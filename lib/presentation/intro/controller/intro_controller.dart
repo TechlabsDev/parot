@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,9 +12,9 @@ class IntroController extends GetxController {
   @override
   void onInit() {
     print("intro controller init....!");
-    // Timer.periodic(const Duration(seconds: 2), (timer) {
-    //   lastSignInType.value = SignInType.values[Random().nextInt(4)];
-    // });
+    Timer.periodic(const Duration(seconds: 2), (timer) {
+      lastSignInType.value = SignInType.values[Random().nextInt(4)];
+    });
     super.onInit();
   }
 
