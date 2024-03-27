@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:parot/const/enum/shopping_category.dart';
 import 'package:parot/const/enum/sign_up_step.dart';
 
 import '../../../const/route/path_base.dart';
@@ -10,6 +11,7 @@ class SignUpController extends GetxController {
   RxBool termAgree = false.obs; //(필수) 이용약관 동의
   RxBool allTermAgree = false.obs; //전체 약관 동의
   RxBool requiredTermAgree = false.obs; //필수 약관 동의
+  RxList<String> selectedCategory = <String>[].obs;
 
   final pageController = PageController();
   Rx<SignUpStep> step = SignUpStep.term.obs;
@@ -65,6 +67,14 @@ class SignUpController extends GetxController {
       step.value = SignUpStep.term;
       pageController.animateToPage(0, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
       return;
+    }
+  }
+
+  void onTapCateogory(ShoppingCategory category) {
+    if (selectedCategory.contains(category.engName)) {
+      selectedCategory.remove(category.engName); //이미 선택했던 항목이면 제거
+    } else {
+      selectedCategory.add(category.engName); //처음 선택한 항목이면 추가
     }
   }
 }

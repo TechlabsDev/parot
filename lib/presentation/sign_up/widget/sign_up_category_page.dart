@@ -16,7 +16,7 @@ class SignUpCategoryPage extends StatefulWidget {
 class _SignUpCategoryPageState extends State<SignUpCategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignUpController>(
+    return GetX<SignUpController>(
         init: Get.put(SignUpController()),
         builder: (controller) {
           return Padding(
@@ -46,23 +46,33 @@ class _SignUpCategoryPageState extends State<SignUpCategoryPage> {
                   child: ListView(
                     children: [
                       for (int i = 0; i < ShoppingCategory.values.length; i++)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Row(
-                            children: [
-                              Image.asset(ShoppingCategory.values[i].iconPath, width: 20, height: 20),
-                              const SizedBox(width: 14),
-                              Text(
-                                ShoppingCategory.values[i].korName,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: ParrotColor.gray800,
+                        InkWell(
+                          onTap: () {
+                            controller.onTapCateogory(ShoppingCategory.values[i]);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Row(
+                              children: [
+                                Image.asset(ShoppingCategory.values[i].iconPath, width: 20, height: 20),
+                                const SizedBox(width: 14),
+                                Text(
+                                  ShoppingCategory.values[i].korName,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: ParrotColor.gray800,
+                                  ),
                                 ),
-                              ),
-                              const Spacer(),
-                              ParrotCheckCircle(value: false, onChanged: (_) {}),
-                            ],
+                                const Spacer(),
+                                ParrotCheckCircle(
+                                  value: controller.selectedCategory.contains(ShoppingCategory.values[i].engName),
+                                  onChanged: (_) {
+                                    controller.onTapCateogory(ShoppingCategory.values[i]);
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                     ],
