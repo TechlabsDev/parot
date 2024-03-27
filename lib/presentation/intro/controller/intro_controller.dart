@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../const/enum/sign_in_type.dart';
+import '../../../const/route/path_base.dart';
 
 class IntroController extends GetxController {
   Rx<SignInType> lastSignInType = SignInType.apple.obs;
@@ -43,6 +44,7 @@ class IntroController extends GetxController {
     } else if (type == SignInType.naver) {
       await _signInWithNaver();
     }
+    Get.toNamed(ParrotPath.SIGN_UP);
   }
 
   Future onTapSignInError() async {
