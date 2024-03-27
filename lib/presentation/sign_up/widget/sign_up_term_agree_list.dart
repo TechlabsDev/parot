@@ -22,21 +22,21 @@ class _SignUpTermAgreeListState extends State<SignUpTermAgreeList> {
       2: "(선택) 개인정보 마케팅 활용 동의",
     };
     Map<int, RxBool> indexToRxValue = {
-      0: controller.termAgree,
-      1: controller.privacyCollectAndUseAgree,
-      2: controller.privacyMarketingUseAgree,
+      0: controller.termAgree, //"(필수) 이용약관 동의"
+      1: controller.privacyCollectAndUseAgree, //"(필수) 개인정보 수집 및 이용 동의"
+      2: controller.privacyMarketingUseAgree, //"(선택) 개인정보 마케팅 활용 동의"
     };
     //항목을 동의/비동의 했을 때
     Map<int, Function(bool)> indexToFunctionMap = {
-      0: controller.setTermAgree,
-      1: controller.setPrivacyCollectAndUseAgree,
-      2: controller.setPrivacyMarketingUseAgree,
+      0: controller.setTermAgree, //"(필수) 이용약관 동의"
+      1: controller.setPrivacyCollectAndUseAgree, //"(필수) 개인정보 수집 및 이용 동의"
+      2: controller.setPrivacyMarketingUseAgree, //"(선택) 개인정보 마케팅 활용 동의"
     };
     //[보기] 버튼 눌렀을 때
     Map<int, Function> indexToTrailFunctionMap = {
-      0: () {},
-      1: () {},
-      2: () {},
+      0: () {}, //"(필수) 이용약관 동의"
+      1: () {}, //"(필수) 개인정보 수집 및 이용 동의"
+      2: () {}, //"(선택) 개인정보 마케팅 활용 동의"
     };
     return GetX<SignUpController>(
         init: Get.put(SignUpController()),
