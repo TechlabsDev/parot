@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../../const/enum/sign_in_type.dart';
 
 class IntroController extends GetxController {
+  Rx<SignInType> lastSignInType = SignInType.apple.obs;
   @override
   void onInit() {
     print("intro controller init....!");
@@ -39,5 +40,21 @@ class IntroController extends GetxController {
 
   Future onTapSignInError() async {
     print("onTapSignInError...!");
+  }
+
+  double getLastSignInBalloonPosition() {
+    if (lastSignInType.value == SignInType.naver) {
+      return 0;
+    }
+    if (lastSignInType.value == SignInType.kakao) {
+      return 50;
+    }
+    if (lastSignInType.value == SignInType.google) {
+      return 140;
+    }
+    if (lastSignInType.value == SignInType.apple) {
+      return 180;
+    }
+    return 0;
   }
 }
