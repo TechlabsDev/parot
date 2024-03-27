@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:parot/const/route/page.dart';
 import 'package:parot/presentation/design_component/parrot_color.dart';
-import 'package:parot/presentation/main/screen/main_screen.dart';
+import 'package:parot/presentation/intro/screen/intro_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,24 +16,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: '패럿패럿',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: ParrotColor.red500),
-        splashColor: Colors.transparent, // 리플 이펙트 제거
-        highlightColor: Colors.transparent, // 탭 하이라이트 색상 제거
-        useMaterial3: true,
-        bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: Colors.transparent,
-          surfaceTintColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero,
+    return ScreenUtilInit(
+      designSize: const Size(360, 740),
+      child: GetMaterialApp(
+        title: '패럿패럿',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: ParrotColor.red500),
+          splashColor: Colors.transparent, // 리플 이펙트 제거
+          highlightColor: Colors.transparent, // 탭 하이라이트 색상 제거
+          useMaterial3: true,
+          bottomSheetTheme: const BottomSheetThemeData(
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            ),
           ),
+          fontFamily: "Pretendard", //기본 폰트는 Pretendard
         ),
-        fontFamily: "Pretendard", //기본 폰트는 Pretendard
+        getPages: ParrotPage.pages,
+        home: const IntroScreen(),
       ),
-      getPages: ParrotPage.pages,
-      home: const MainScreen(),
     );
   }
 }
