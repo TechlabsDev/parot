@@ -1,3 +1,4 @@
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ class ParrotScaffold extends StatefulWidget {
     Key? key,
     this.appBar,
     this.body,
+    this.horizontal16Padding = false,
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.floatingActionButtonAnimator,
@@ -33,6 +35,7 @@ class ParrotScaffold extends StatefulWidget {
   }) : super(key: key);
 
   final bool extendBody;
+  final bool horizontal16Padding;
   final bool extendBodyBehindAppBar;
   final PreferredSizeWidget? appBar;
   final Widget? body;
@@ -64,37 +67,41 @@ class ParrotScaffold extends StatefulWidget {
 class _ParrotScaffoldState extends State<ParrotScaffold> {
   @override
   Widget build(BuildContext context) {
-    return MobileSizeOnWeb(
-      enabled: GetPlatform.isWeb,
-      child: GestureDetector(
-        onTap: () {
-          Get.focusScope?.unfocus();
-        },
-        child: Scaffold(
-          appBar: widget.appBar,
-          body: widget.body,
-          floatingActionButton: widget.floatingActionButton,
-          floatingActionButtonLocation: widget.floatingActionButtonLocation,
-          floatingActionButtonAnimator: widget.floatingActionButtonAnimator,
-          persistentFooterButtons: widget.persistentFooterButtons,
-          persistentFooterAlignment: widget.persistentFooterAlignment,
-          drawer: widget.drawer,
-          onDrawerChanged: widget.onDrawerChanged,
-          endDrawer: widget.endDrawer,
-          onEndDrawerChanged: widget.onEndDrawerChanged,
-          bottomNavigationBar: widget.bottomNavigationBar,
-          bottomSheet: widget.bottomSheet,
-          backgroundColor: widget.backgroundColor,
-          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
-          primary: widget.primary,
-          drawerDragStartBehavior: widget.drawerDragStartBehavior,
-          extendBody: widget.extendBody,
-          extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
-          drawerScrimColor: widget.drawerScrimColor,
-          drawerEdgeDragWidth: widget.drawerEdgeDragWidth,
-          drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
-          endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
-          restorationId: widget.restorationId,
+    return ColorfulSafeArea(
+      color: Colors.white,
+      child: MobileSizeOnWeb(
+        enabled: GetPlatform.isWeb,
+        child: GestureDetector(
+          onTap: () {
+            Get.focusScope?.unfocus();
+          },
+          child: Scaffold(
+            appBar: widget.appBar,
+            body:
+                widget.horizontal16Padding ? Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: widget.body) : widget.body,
+            floatingActionButton: widget.floatingActionButton,
+            floatingActionButtonLocation: widget.floatingActionButtonLocation,
+            floatingActionButtonAnimator: widget.floatingActionButtonAnimator,
+            persistentFooterButtons: widget.persistentFooterButtons,
+            persistentFooterAlignment: widget.persistentFooterAlignment,
+            drawer: widget.drawer,
+            onDrawerChanged: widget.onDrawerChanged,
+            endDrawer: widget.endDrawer,
+            onEndDrawerChanged: widget.onEndDrawerChanged,
+            bottomNavigationBar: widget.bottomNavigationBar,
+            bottomSheet: widget.bottomSheet,
+            backgroundColor: widget.backgroundColor,
+            resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+            primary: widget.primary,
+            drawerDragStartBehavior: widget.drawerDragStartBehavior,
+            extendBody: widget.extendBody,
+            extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
+            drawerScrimColor: widget.drawerScrimColor,
+            drawerEdgeDragWidth: widget.drawerEdgeDragWidth,
+            drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
+            endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
+            restorationId: widget.restorationId,
+          ),
         ),
       ),
     );
