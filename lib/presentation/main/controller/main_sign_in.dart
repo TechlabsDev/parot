@@ -13,7 +13,6 @@ class MainSignIn {
 
   Future handleNaverSignIn() async {
     if (GetPlatform.isWeb) {
-      Get.toNamed(ParrotPath.SIGN_IN.WITH_NAVER_WEB);
     } else {
       await SignInWithNaver().call();
     }
