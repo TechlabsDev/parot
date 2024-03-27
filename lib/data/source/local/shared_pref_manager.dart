@@ -1,4 +1,4 @@
-import 'package:parot/const/enum/login_type.dart';
+import 'package:parot/const/enum/sign_in_type.dart';
 import 'package:parot/const/key/pref_key.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 

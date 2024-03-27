@@ -6,7 +6,7 @@ import 'package:parot/domain/usecase/sign_in/get_sign_in_stream.dart';
 import 'package:parot/domain/usecase/sign_in/get_sign_in_type.dart';
 import 'package:parot/presentation/main/controller/main_sign_in.dart';
 
-import '../../../const/enum/login_type.dart';
+import '../../../const/enum/sign_in_type.dart';
 
 class MainController extends GetxController {
   Rx<SignInType> loginType = SignInType.none.obs;

@@ -1,6 +1,6 @@
 import 'package:parot/domain/repository/sign_in_repository.dart';
 
-import '../../../const/enum/login_type.dart';
+import '../../../const/enum/sign_in_type.dart';
 
 class GetSignInType {
   final _repository = SignInRepository();

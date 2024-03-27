@@ -1,4 +1,4 @@
-import 'package:parot/const/enum/login_type.dart';
+import 'package:parot/const/enum/sign_in_type.dart';
 import 'package:parot/data/source/local/shared_pref_manager.dart';
 
 import '../../data/source/api/kakao_api.dart';
