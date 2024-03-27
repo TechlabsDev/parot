@@ -30,17 +30,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
       init: Get.put(SignUpController()),
       builder: (controller) {
         return GestureDetector(
-          onHorizontalDragUpdate: (details) {
+          onHorizontalDragUpdate: (details) async {
             print(details.delta.dx);
 
-            if (details.delta.dx > 50) {
+            if (details.delta.dx > 30) {
               //스와이프로 뒤로가기
               if (controller.step.value == SignUpStep.term) {
                 Get.offAllNamed(ParrotPath.INTRO);
                 return;
               }
               int prevIndex = controller.pageController.page!.toInt() - 1;
-              controller.pageController.animateToPage(prevIndex, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
+              await controller.pageController.animateToPage(prevIndex, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
             }
           },
           child: ParrotScaffold(
