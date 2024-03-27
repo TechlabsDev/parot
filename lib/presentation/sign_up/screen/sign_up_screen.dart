@@ -53,6 +53,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller.step.value = SignUpStep.term;
                 }
                 if (index == 1) {
+                  controller.step.value = SignUpStep.selectCategory;
+                }
+                if (index == 2) {
                   controller.step.value = SignUpStep.finish;
                 }
               },
