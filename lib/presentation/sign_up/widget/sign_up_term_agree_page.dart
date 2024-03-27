@@ -46,7 +46,7 @@ class _SignUpTermAgreePageState extends State<SignUpTermAgreePage> {
               },
               backgroundColor: ParrotColor.red500,
               borderColor: ParrotColor.red500,
-              text: "회원가입",
+              text: "다음",
               size: const Size(double.maxFinite, 52),
             ),
           ),

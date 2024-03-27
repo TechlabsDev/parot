@@ -4,6 +4,7 @@ import 'package:parot/const/route/path_base.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
 import 'package:parot/presentation/design_component/parrot_scaffold.dart';
 import 'package:parot/presentation/sign_up/controller/sign_up_controller.dart';
+import 'package:parot/presentation/sign_up/widget/sign_up_category_page.dart';
 import 'package:parot/presentation/sign_up/widget/sign_up_term_agree_page.dart';
 
 import '../../../const/enum/sign_up_step.dart';
@@ -57,7 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               },
               children: [
                 const SignUpTermAgreePage(),
-                Container(),
+                const SignUpCategoryPage(),
               ],
             ),
           ),
