@@ -57,6 +57,7 @@ dependencies:
   multiple_result: ^5.1.0
   flutter_native_splash: ^2.3.10
   flutter_screenutil: ^5.9.0
+  colorful_safe_area: ^1.0.0
 
 dev_dependencies:
   flutter_test:
