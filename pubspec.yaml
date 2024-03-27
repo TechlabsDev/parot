@@ -55,6 +55,7 @@ dependencies:
   styled_text: ^8.1.0
   dotted_line: ^3.2.2
   multiple_result: ^5.1.0
+  flutter_native_splash: ^2.3.10
 
 dev_dependencies:
   flutter_test:
