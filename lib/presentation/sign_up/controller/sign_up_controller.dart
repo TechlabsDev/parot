@@ -5,6 +5,7 @@ class SignUpController extends GetxController {
   RxBool privacyMarketingUseAgree = false.obs; //(선택) 개인정보 마케팅 활용 동의
   RxBool termAgree = false.obs; //(필수) 이용약관 동의
   RxBool allTermAgree = false.obs; //전체 약관 동의
+  RxBool requiredTermAgree = false.obs; //필수 약관 동의
   @override
   void onInit() {
     super.onInit();
@@ -30,9 +31,15 @@ class SignUpController extends GetxController {
     privacyCollectAndUseAgree.value = v;
     privacyMarketingUseAgree.value = v;
     termAgree.value = v;
+    requiredTermAgree.value = v;
   }
 
   void checkAllAgreed() {
+    if (privacyCollectAndUseAgree.isTrue && termAgree.isTrue) {
+      requiredTermAgree.value = true;
+    } else {
+      requiredTermAgree.value = false;
+    }
     if (privacyMarketingUseAgree.isTrue && privacyCollectAndUseAgree.isTrue && termAgree.isTrue) {
       allTermAgree.value = true;
     } else {

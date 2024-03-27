@@ -19,7 +19,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SignUpController>(
+    return GetX<SignUpController>(
       init: Get.put(SignUpController()),
       builder: (controller) {
         return ParrotScaffold(
@@ -48,6 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ParrotElevatedButton(
+                  enabled: controller.requiredTermAgree.isTrue,
                   onPressed: () {},
                   backgroundColor: ParrotColor.red500,
                   borderColor: ParrotColor.red500,
