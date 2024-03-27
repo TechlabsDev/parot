@@ -49,19 +49,20 @@ class IntroController extends GetxController {
     print("onTapSignInError...!");
   }
 
-  double getLastSignInBalloonPosition() {
+  //$1 : top, $2 : left
+  (double, double) getLastSignInBalloonPosition() {
     if (lastSignInType.value == SignInType.naver) {
-      return 0.w;
+      return (60.h + (Get.height < 670 ? 10.h : 0.h), 0.w);
     }
     if (lastSignInType.value == SignInType.kakao) {
-      return 50.w;
+      return (60.h + (Get.height < 670 ? 10.h : 0.h), 50.w);
     }
     if (lastSignInType.value == SignInType.google) {
-      return 140.w;
+      return (60.h + (Get.height < 670 ? 10.h : 0.h), 140.w);
     }
     if (lastSignInType.value == SignInType.apple) {
-      return 180.w;
+      return (60.h + (Get.height < 670 ? 10.h : 0.h), 180.w);
     }
-    return 0;
+    return (0, 0);
   }
 }

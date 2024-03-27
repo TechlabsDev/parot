@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/intro/controller/intro_controller.dart';
 
@@ -38,8 +37,8 @@ class _SocialSignInListState extends State<SocialSignInList> {
                     .toList(),
               ),
               Positioned(
-                top: 60.h,
-                left: controller.getLastSignInBalloonPosition(),
+                top: controller.getLastSignInBalloonPosition().$1,
+                left: controller.getLastSignInBalloonPosition().$2,
                 child: Image.asset(
                   "asset/social_login/last_sign_in_balloon_${controller.lastSignInType.value == SignInType.naver ? "left" : controller.lastSignInType.value == SignInType.apple ? "right" : "center"}.png",
                   width: 145,
