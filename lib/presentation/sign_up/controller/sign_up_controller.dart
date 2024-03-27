@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:parot/const/enum/sign_up_step.dart';
+
+import '../../../const/route/path_base.dart';
 
 class SignUpController extends GetxController {
   RxBool privacyCollectAndUseAgree = false.obs; //(필수) 개인정보 수집 및 이용 동의
@@ -8,6 +11,7 @@ class SignUpController extends GetxController {
   RxBool allTermAgree = false.obs; //전체 약관 동의
   RxBool requiredTermAgree = false.obs; //필수 약관 동의
 
+  final pageController = PageController();
   Rx<SignUpStep> step = SignUpStep.term.obs;
   @override
   void onInit() {
@@ -47,6 +51,20 @@ class SignUpController extends GetxController {
       allTermAgree.value = true;
     } else {
       allTermAgree.value = false;
+    }
+  }
+
+  void onBack() {
+    if (step.value == SignUpStep.term) {
+      print("go back");
+      Get.offAllNamed(ParrotPath.INTRO);
+      return;
+    }
+    if (step.value == SignUpStep.finish) {
+      print("go to term");
+      step.value = SignUpStep.term;
+      pageController.animateToPage(0, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
+      return;
     }
   }
 }

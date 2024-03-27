@@ -11,11 +11,13 @@ class ParrotDepthHeader extends AppBar {
     List<Widget>? actions,
     VoidCallback? onSearchTap,
     VoidCallback? onNotiTap,
+    VoidCallback? onBackTap,
     Widget? leading,
     bool needHeaderBottomBorder = false,
   }) : super(
           backgroundColor: Colors.white,
-          leading: leading ?? IconButton(onPressed: Get.back, icon: Image.asset("asset/icon/stroke_arrow_left.png", height: 24, width: 24)),
+          leading: leading ??
+              IconButton(onPressed: onBackTap ?? Get.back, icon: Image.asset("asset/icon/stroke_arrow_left.png", height: 24, width: 24)),
           title: title != null ? Text(title, style: parrotDepthHeaderStyle) : titleWidget ?? const SizedBox.shrink(),
           actions: actions ??
               [

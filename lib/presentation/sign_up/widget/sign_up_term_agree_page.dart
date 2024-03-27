@@ -42,6 +42,7 @@ class _SignUpTermAgreePageState extends State<SignUpTermAgreePage> {
               enabled: controller.requiredTermAgree.isTrue,
               onPressed: () {
                 controller.step.value = SignUpStep.finish;
+                controller.pageController.animateToPage(1, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
               },
               backgroundColor: ParrotColor.red500,
               borderColor: ParrotColor.red500,

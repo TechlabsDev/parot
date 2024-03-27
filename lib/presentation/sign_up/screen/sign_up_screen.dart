@@ -16,18 +16,46 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetX<SignUpController>(
       init: Get.put(SignUpController()),
       builder: (controller) {
-        return ParrotScaffold(
-          horizontal16Padding: false,
-          appBar: ParrotDepthHeader(
-            title: "회원가입",
-            actions: [],
-            needHeaderBottomBorder: true,
+        return PopScope(
+          canPop: false,
+          onPopInvoked: (_) {
+            controller.onBack();
+          },
+          child: ParrotScaffold(
+            horizontal16Padding: false,
+            appBar: ParrotDepthHeader(
+              title: "회원가입",
+              actions: [],
+              onBackTap: controller.onBack,
+              needHeaderBottomBorder: true,
+            ),
+            // body: controller.step.value == SignUpStep.term ? SignUpTermAgreePage() : Container(),
+            body: PageView(
+              controller: controller.pageController,
+              physics: controller.step.value == SignUpStep.term ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+              onPageChanged: (index) {
+                if (index == 0) {
+                  controller.step.value = SignUpStep.term;
+                }
+                if (index == 1) {
+                  controller.step.value = SignUpStep.finish;
+                }
+              },
+              children: [
+                const SignUpTermAgreePage(),
+                Container(),
+              ],
+            ),
           ),
-          body: controller.step.value == SignUpStep.term ? SignUpTermAgreePage() : Container(),
         );
       },
     );

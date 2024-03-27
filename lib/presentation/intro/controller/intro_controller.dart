@@ -44,7 +44,7 @@ class IntroController extends GetxController {
     } else if (type == SignInType.naver) {
       await _signInWithNaver();
     }
-    Get.toNamed(ParrotPath.SIGN_UP);
+    Get.offAllNamed(ParrotPath.SIGN_UP);
   }
 
   Future onTapSignInError() async {
