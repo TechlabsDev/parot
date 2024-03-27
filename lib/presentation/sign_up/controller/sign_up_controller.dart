@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:parot/const/enum/sign_up_step.dart';
 
 class SignUpController extends GetxController {
   RxBool privacyCollectAndUseAgree = false.obs; //(필수) 개인정보 수집 및 이용 동의
@@ -6,6 +7,8 @@ class SignUpController extends GetxController {
   RxBool termAgree = false.obs; //(필수) 이용약관 동의
   RxBool allTermAgree = false.obs; //전체 약관 동의
   RxBool requiredTermAgree = false.obs; //필수 약관 동의
+
+  Rx<SignUpStep> step = SignUpStep.term.obs;
   @override
   void onInit() {
     super.onInit();
