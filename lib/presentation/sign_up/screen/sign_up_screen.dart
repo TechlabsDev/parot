@@ -9,6 +9,7 @@ import 'package:parot/presentation/sign_up/widget/sign_up_category_page.dart';
 import 'package:parot/presentation/sign_up/widget/sign_up_term_agree_page.dart';
 
 import '../../../const/enum/sign_up_step.dart';
+import '../widget/sign_up_finish_page.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -25,15 +26,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GetX<SignUpController>(
+    return GetBuilder<SignUpController>(
       init: Get.put(SignUpController()),
       builder: (controller) {
         return GestureDetector(
           onHorizontalDragUpdate: (details) {
+            print(details.delta.dx);
+
             if (details.delta.dx > 50) {
+              //스와이프로 뒤로가기
               if (controller.step.value == SignUpStep.term) {
                 Get.offAllNamed(ParrotPath.INTRO);
+                return;
               }
+              int prevIndex = controller.pageController.page!.toInt() - 1;
+              controller.pageController.animateToPage(prevIndex, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
             }
           },
           child: ParrotScaffold(
@@ -50,8 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Expanded(
                   child: PageView(
                     controller: controller.pageController,
-                    physics:
-                        controller.step.value == SignUpStep.term ? const NeverScrollableScrollPhysics() : const ClampingScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     onPageChanged: (index) {
                       if (index == 0) {
                         controller.step.value = SignUpStep.term;
@@ -66,6 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: const [
                       SignUpTermAgreePage(),
                       SignUpCategoryPage(),
+                      SignUpFinishPage(),
                     ],
                   ),
                 ),
