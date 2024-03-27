@@ -192,13 +192,11 @@ class _TempScreenState extends State<TempScreen> {
                   const Divider(height: 40),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: GetX<TempController>(builder: (controller) {
-                      return ParrotPriceGraph(
-                        graphSize: const Size(350, 100),
-                        dateList: controller.dateList,
-                        priceList: controller.priceList,
-                      );
-                    }),
+                    child: ParrotPriceGraph(
+                      graphSize: const Size(350, 100),
+                      dateList: [...controller.dateList],
+                      priceList: [...controller.priceList],
+                    ),
                   ),
                   const SizedBox(height: 300),
                 ],
