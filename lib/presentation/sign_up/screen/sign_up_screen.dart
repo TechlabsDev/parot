@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:parot/const/route/path_base.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
 import 'package:parot/presentation/design_component/parrot_scaffold.dart';
 import 'package:parot/presentation/sign_up/controller/sign_up_controller.dart';
@@ -25,10 +26,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return GetX<SignUpController>(
       init: Get.put(SignUpController()),
       builder: (controller) {
-        return PopScope(
-          canPop: false,
-          onPopInvoked: (_) {
-            controller.onBack();
+        return GestureDetector(
+          onHorizontalDragUpdate: (details) {
+            print(details.delta.dx);
+            if (details.delta.dx > 50) {
+              if (controller.step.value == SignUpStep.term) {
+                Get.offAllNamed(ParrotPath.INTRO);
+              }
+            }
           },
           child: ParrotScaffold(
             horizontal16Padding: false,
