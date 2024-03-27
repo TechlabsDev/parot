@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:parot/const/route/path_base.dart';
 import 'package:parot/presentation/design_component/parrot_elavated_button.dart';
 import 'package:parot/presentation/design_component/parrot_header.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
@@ -32,14 +31,13 @@ class _MainScreenState extends State<MainScreen> {
           };
           return ParrotScaffold(
             appBar: ParrotHeader(
-              title: headerTitleMap[controller.currentBottomNavIndex.value]!,
+              titleWidget: headerTitleMap[controller.currentBottomNavIndex.value]!,
               onNotiTap: () {},
-              onSearchTap: () => Get.toNamed(ParrotPath.TEMP.SEARCH_TEMP_PATH),
             ),
             body: Center(
               child: ParrotElevatedButton(
+                onPressed: () {},
                 enabled: true,
-                onPressed: () => Get.toNamed(ParrotPath.TEMP.SWITCH_TEMP_PATH),
                 textColor: Colors.white,
                 text: "컴포넌트 보러가기",
               ),
