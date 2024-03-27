@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:parot/presentation/design_component/parrot_color.dart';
 import 'package:parot/presentation/design_component/parrot_depth_header.dart';
+import 'package:parot/presentation/design_component/parrot_elavated_button.dart';
 import 'package:parot/presentation/design_component/parrot_scaffold.dart';
 import 'package:parot/presentation/sign_up/controller/sign_up_controller.dart';
 import 'package:parot/presentation/sign_up/widget/sign_up_term_agree_list.dart';
@@ -42,6 +44,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const Spacer(),
               const SignUpTermAgreeList(),
+              SizedBox(height: 32.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ParrotElevatedButton(
+                  onPressed: () {},
+                  backgroundColor: ParrotColor.red500,
+                  borderColor: ParrotColor.red500,
+                  text: "회원가입",
+                  size: const Size(double.maxFinite, 52),
+                ),
+              ),
             ],
           ),
         );
