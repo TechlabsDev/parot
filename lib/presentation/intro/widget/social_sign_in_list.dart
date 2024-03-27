@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:parot/presentation/intro/controller/intro_controller.dart';
 
@@ -14,7 +15,7 @@ class SocialSignInList extends StatefulWidget {
 class _SocialSignInListState extends State<SocialSignInList> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<IntroController>(
+    return GetX<IntroController>(
         init: Get.put(IntroController()),
         builder: (controller) {
           return Stack(
@@ -37,7 +38,7 @@ class _SocialSignInListState extends State<SocialSignInList> {
                     .toList(),
               ),
               Positioned(
-                top: 65,
+                top: 60.h,
                 left: controller.getLastSignInBalloonPosition(),
                 child: Image.asset(
                   "asset/social_login/last_sign_in_balloon_${controller.lastSignInType.value == SignInType.naver ? "left" : controller.lastSignInType.value == SignInType.apple ? "right" : "center"}.png",

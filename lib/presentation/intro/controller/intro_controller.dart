@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:math';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../const/enum/sign_in_type.dart';
@@ -7,6 +11,9 @@ class IntroController extends GetxController {
   @override
   void onInit() {
     print("intro controller init....!");
+    Timer.periodic(const Duration(seconds: 2), (timer) {
+      lastSignInType.value = SignInType.values[Random().nextInt(4)];
+    });
     super.onInit();
   }
 
@@ -44,16 +51,16 @@ class IntroController extends GetxController {
 
   double getLastSignInBalloonPosition() {
     if (lastSignInType.value == SignInType.naver) {
-      return 0;
+      return 0.w;
     }
     if (lastSignInType.value == SignInType.kakao) {
-      return 50;
+      return 50.w;
     }
     if (lastSignInType.value == SignInType.google) {
-      return 140;
+      return 140.w;
     }
     if (lastSignInType.value == SignInType.apple) {
-      return 180;
+      return 180.w;
     }
     return 0;
   }
