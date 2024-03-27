@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parot/presentation/design_component/parrot_color.dart';
 import 'package:parot/presentation/design_component/parrot_scaffold.dart';
+import 'package:parot/presentation/intro/widget/social_sign_in_list.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
@@ -41,8 +42,9 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
             ),
           ),
-          Row(
-            children: [],
+          const Padding(
+            padding: EdgeInsets.only(left: 8), //parrot_scaffold가 가진 좌측 기본 패딩 16에 8을 더해서 24를 만든다
+            child: SocialSignInList(),
           ),
         ],
       ),
