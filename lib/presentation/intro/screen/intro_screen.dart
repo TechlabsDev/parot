@@ -7,6 +7,7 @@ import 'package:parot/presentation/intro/controller/intro_controller.dart';
 import 'package:parot/presentation/intro/widget/social_sign_in_list.dart';
 
 import '../widget/sign_in_error_button.dart';
+import '../widget/simple_start_text.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
@@ -39,16 +40,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
               ),
               const Spacer(),
-              const Center(
-                child: Text(
-                  "간편하게 시작하기",
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: ParrotColor.gray200,
-                  ),
-                ),
-              ),
+              const SimpleStartText(),
               const SizedBox(height: 24),
               const Padding(
                 padding: EdgeInsets.only(left: 8), //parrot_scaffold가 가진 좌측 기본 패딩 16에 8을 더해서 24를 만든다.
