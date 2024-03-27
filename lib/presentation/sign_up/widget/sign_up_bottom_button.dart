@@ -20,7 +20,13 @@ class _SignUpBottomButtonState extends State<SignUpBottomButton> {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ParrotElevatedButton(
-          enabled: controller.requiredTermAgree.isTrue,
+          enabled: controller.step.value == SignUpStep.term
+              ? controller.requiredTermAgree.isTrue
+              : controller.step.value == SignUpStep.selectCategory
+                  ? controller.selectedCategory.isNotEmpty
+                  : controller.step.value == SignUpStep.finish
+                      ? true
+                      : false,
           onPressed: () {
             int nextIndex = controller.pageController.page!.toInt() + 1;
             controller.pageController.animateToPage(nextIndex, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
