@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,13 +7,13 @@ import '../../../const/enum/sign_in_type.dart';
 import '../../../const/route/path_base.dart';
 
 class IntroController extends GetxController {
-  Rx<SignInType> lastSignInType = SignInType.apple.obs;
+  Rx<SignInType> lastSignInType = SignInType.naver.obs;
   @override
   void onInit() {
     print("intro controller init....!");
-    Timer.periodic(const Duration(seconds: 2), (timer) {
-      lastSignInType.value = SignInType.values[Random().nextInt(4)];
-    });
+    // Timer.periodic(const Duration(seconds: 2), (timer) {
+    //   lastSignInType.value = SignInType.values[Random().nextInt(4)];
+    // });
     super.onInit();
   }
 
@@ -54,13 +53,13 @@ class IntroController extends GetxController {
   //$1 : top, $2 : left
   (double, double) getLastSignInBalloonPosition() {
     if (lastSignInType.value == SignInType.naver) {
-      return (60.h + (Get.height < 670 ? 10.h : 0.h), 0.w);
+      return (60.h + (Get.height < 670 ? 10.h : 0.h), 0);
     }
     if (lastSignInType.value == SignInType.kakao) {
-      return (60.h + (Get.height < 670 ? 10.h : 0.h), 50.w);
+      return (60.h + (Get.height < 670 ? 10.h : 0.h), 45.w);
     }
     if (lastSignInType.value == SignInType.google) {
-      return (60.h + (Get.height < 670 ? 10.h : 0.h), 140.w);
+      return (60.h + (Get.height < 670 ? 10.h : 0.h), 135.w);
     }
     if (lastSignInType.value == SignInType.apple) {
       return (60.h + (Get.height < 670 ? 10.h : 0.h), 180.w);

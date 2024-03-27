@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:parot/presentation/sign_up/controller/sign_up_controller.dart';
 
 import '../../../const/enum/sign_up_step.dart';
+import '../../../const/route/path_base.dart';
 import '../../design_component/parrot_color.dart';
 import '../../design_component/parrot_elavated_button.dart';
 
@@ -28,6 +29,10 @@ class _SignUpBottomButtonState extends State<SignUpBottomButton> {
                       ? true
                       : false,
           onPressed: () {
+            if (controller.step.value == SignUpStep.finish) {
+              Get.offAllNamed(ParrotPath.MAIN);
+              return;
+            }
             int nextIndex = controller.pageController.page!.toInt() + 1;
             controller.pageController.animateToPage(nextIndex, duration: const Duration(milliseconds: 150), curve: Curves.easeIn);
           },

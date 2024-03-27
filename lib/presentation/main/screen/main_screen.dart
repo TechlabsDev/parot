@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:parot/presentation/design_component/parrot_elavated_button.dart';
 import 'package:parot/presentation/design_component/parrot_header.dart';
 import 'package:parot/presentation/main/controller/main_controller.dart';
 
@@ -33,14 +31,6 @@ class _MainScreenState extends State<MainScreen> {
             appBar: ParrotHeader(
               titleWidget: headerTitleMap[controller.currentBottomNavIndex.value]!,
               onNotiTap: () {},
-            ),
-            body: Center(
-              child: ParrotElevatedButton(
-                onPressed: () {},
-                enabled: true,
-                textColor: Colors.white,
-                text: "컴포넌트 보러가기",
-              ),
             ),
             bottomNavigationBar: const BottomNav(),
           );
